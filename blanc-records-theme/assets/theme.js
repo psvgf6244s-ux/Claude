@@ -130,24 +130,10 @@
     });
   });
 
-  // Guía de tallas: cambia los números del dibujo y marca la fila
-  function setGuide(sg, z) {
-    var d = JSON.parse(sg.getAttribute('data-guide'));
-    if (!d.rows[z]) return;
-    d.map.forEach(function (ci, i) {
-      var t = sg.querySelector('[data-m="' + i + '"]');
-      if (t) t.textContent = d.cols[ci].toUpperCase() + ' ' + d.rows[z][ci] + ' cm';
-    });
-    sg.querySelectorAll('[data-gz]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.gz === z ? 'true' : 'false'); });
-    sg.querySelectorAll('[data-row]').forEach(function (r) { r.classList.toggle('sel', r.dataset.row === z); });
-  }
-  document.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-gz]');
-    if (b) setGuide(b.closest('.sg'), b.dataset.gz);
-  });
+  // Guía de tallas: marca la fila de la talla elegida
   document.addEventListener('change', function (e) {
     if (!e.target.matches('[data-option]')) return;
-    document.querySelectorAll('.sg').forEach(function (sg) { setGuide(sg, e.target.value); });
+    document.querySelectorAll('.sg [data-row]').forEach(function (r) { r.classList.toggle('sel', r.dataset.row === e.target.value); });
   });
 
   // Abrir las preferencias del banner de cookies de Shopify
