@@ -58,7 +58,7 @@
       .replace(/\{\{\s*amount\s*\}\}/, withDot);
   }
 
-  // Carrito desde abajo: se abre al añadir una prenda o al pulsar el carrito
+  // Carrito lateral derecho: se abre al añadir una prenda o al pulsar el carrito
   var sheetEl = document.querySelector('[data-sheet]');
   var routeRoot = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
   var sheetOpen = function () {};
@@ -78,9 +78,14 @@
         .catch(function () { allProducts = []; return allProducts; });
     };
     var img = function (src, w) { if (!src) return ''; return src + (src.indexOf('?') > -1 ? '&' : '?') + 'width=' + w; };
-    var showAdded = function () {
-      var a = q('[data-sheet-added]'); a.hidden = false;
-      clearTimeout(addedTimer); addedTimer = setTimeout(function () { a.hidden = true; }, 2500);
+    var showAdded = function (cart, variantId) {
+      var a = q('[data-sheet-added]');
+      var it = cart.items.filter(function (i) { return i.variant_id === variantId; })[0] || cart.items[0];
+      if (!it) return;
+      var size = it.variant_title && it.variant_title !== 'Default Title' ? ' · ' + S.size + ' ' + esc(it.variant_title) : '';
+      a.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' + esc(S.added) + ': ' + esc(it.product_title) + size;
+      a.hidden = false;
+      clearTimeout(addedTimer); addedTimer = setTimeout(function () { a.hidden = true; }, 3500);
     };
     var render = function (cart) {
       setCount(cart.item_count);
@@ -91,11 +96,11 @@
       co.toggleAttribute('aria-disabled', !cart.item_count);
       q('[data-sheet-lines]').innerHTML = cart.items.length ? cart.items.map(function (it) {
         var size = it.variant_title && it.variant_title !== 'Default Title' ? S.size + ' ' + esc(it.variant_title) : '';
-        return '<div class="line"><a href="' + esc(it.url) + '">' + (it.image ? '<img src="' + esc(img(it.image, 160)) + '" alt="" width="64" height="80">' : '') + '</a>' +
-          '<div><a class="n" href="' + esc(it.url) + '">' + esc(it.product_title) + '</a><span class="m">' + size + '</span></div>' +
-          '<div class="r"><span class="pr">' + formatMoney(it.final_line_price, mf) + '</span><span class="qty">' +
+        return '<div class="line"><a href="' + esc(it.url) + '">' + (it.image ? '<img src="' + esc(img(it.image, 160)) + '" alt="" width="72" height="90">' : '') + '</a>' +
+          '<div class="info"><a class="n" href="' + esc(it.url) + '">' + esc(it.product_title) + '</a><span class="m">' + size + '</span><span class="qty">' +
           '<button type="button" data-key="' + esc(it.key) + '" data-qty="' + (it.quantity - 1) + '" aria-label="' + esc(S.remove_one) + '">−</button><span>' + it.quantity + '</span>' +
-          '<button type="button" data-key="' + esc(it.key) + '" data-qty="' + (it.quantity + 1) + '" aria-label="' + esc(S.add_one) + '">+</button></span></div></div>';
+          '<button type="button" data-key="' + esc(it.key) + '" data-qty="' + (it.quantity + 1) + '" aria-label="' + esc(S.add_one) + '">+</button></span></div>' +
+          '<span class="pr">' + formatMoney(it.final_line_price, mf) + '</span></div>';
       }).join('') : '<p class="empty">' + esc(S.empty) + '</p>';
       var inCart = {};
       cart.items.forEach(function (it) { inCart[it.product_id] = true; });
@@ -105,11 +110,11 @@
         q('[data-sheet-ups]').innerHTML = ups.map(function (p) {
           var src = p.images && p.images[0] ? p.images[0].src : '';
           var price = Math.round(parseFloat(p.variants[0].price) * 100);
-          return '<div class="up-card"><a href="' + routeRoot + 'products/' + esc(p.handle) + '">' + (src ? '<img src="' + esc(img(src, 400)) + '" alt="' + esc(p.title) + '" loading="lazy">' : '') + '</a>' +
-            '<span class="n">' + esc(p.title) + '</span><span class="pr">' + formatMoney(price, mf) + '</span>' +
+          return '<div class="up-row"><a href="' + routeRoot + 'products/' + esc(p.handle) + '">' + (src ? '<img src="' + esc(img(src, 200)) + '" alt="' + esc(p.title) + '" loading="lazy">' : '') + '</a>' +
+            '<div class="up-info"><div class="up-top"><span class="n">' + esc(p.title) + '</span><span class="pr">' + formatMoney(price, mf) + '</span></div>' +
             '<div class="chips" role="group" aria-label="' + esc(S.add_size) + ' ' + esc(p.title) + '">' + p.variants.map(function (v) {
               return '<button type="button" data-variant="' + v.id + '"' + (v.available ? '' : ' disabled') + '>' + esc(v.option1) + '</button>';
-            }).join('') + '</div></div>';
+            }).join('') + '</div></div></div>';
         }).join('');
       });
     };
@@ -122,7 +127,7 @@
         requestAnimationFrame(function () { requestAnimationFrame(function () { sheetEl.classList.add('open'); }); });
       }
       q('[data-sheet-note]').textContent = '';
-      if (added) showAdded(); else q('[data-sheet-added]').hidden = true;
+      if (added) showAdded(cart, added); else q('[data-sheet-added]').hidden = true;
       q('[data-sheet-close]').focus();
     };
     var close = function () {
@@ -148,7 +153,7 @@
       if (v) {
         v.disabled = true;
         fetch(routeRoot + 'cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: +v.dataset.variant, quantity: 1 }] }) })
-          .then(function (r) { if (!r.ok) throw r; return getCart(); }).then(function (c) { render(c); showAdded(); }).catch(function () { v.disabled = false; fail(); });
+          .then(function (r) { if (!r.ok) throw r; return getCart(); }).then(function (c) { render(c); showAdded(c, +v.dataset.variant); }).catch(function () { v.disabled = false; fail(); });
         return;
       }
       var co = e.target.closest('[data-sheet-checkout]');
@@ -246,7 +251,7 @@
       })
         .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
         .then(function () { return fetch((window.Shopify && Shopify.routes ? Shopify.routes.root : '/') + 'cart.js').then(function (r) { return r.json(); }); })
-        .then(function (cart) { setCount(cart.item_count); status.textContent = ''; sheetOpen(cart, true); })
+        .then(function (cart) { setCount(cart.item_count); status.textContent = ''; sheetOpen(cart, +idInput.value); })
         .catch(function (err) { status.textContent = (err && err.description) || strings.error; })
         .finally(function () { var v = match(selected()); addBtn.disabled = !(v && v.available); });
     });

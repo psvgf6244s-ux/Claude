@@ -100,6 +100,7 @@
     "add_one": "Añadir una",
     "add_size": "Añadir en talla",
     "taxes_shipping": "IVA incluido. Envío calculado al pagar.",
-    "legal_html": "Al tramitar el pedido aceptas las <a href=\"{{ terms }}\">condiciones de venta</a> y la <a href=\"{{ privacy }}\">política de privacidad</a>."
+    "legal_html": "Al tramitar el pedido aceptas las <a href=\"{{ terms }}\">condiciones de venta</a> y la <a href=\"{{ privacy }}\">política de privacidad</a>.",
+    "your_order": "Tu pedido"
   }
 }
