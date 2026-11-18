@@ -15,7 +15,7 @@
       class: 'hero__media',
       alt: section.settings.image.alt | default: shop.name }}
   {%- else -%}
-    <img class="hero__media" src="{{ 'hero.jpg' | asset_url }}" alt="Modelo con ropa beige de BLANC RECORDS sujetando una bandera azul marino con el nombre de la marca en un paisaje volcánico" fetchpriority="high" width="1672" height="941">
+    <img class="hero__media" src="{{ 'hero.jpg' | asset_url }}" alt="Modelo con ropa beige sujetando una bandera azul marino con el logo de BLANC RECORDS en un paisaje volcánico" fetchpriority="high" width="3344" height="1882">
   {%- endif -%}
   {%- if section.settings.show_title -%}
     <h1 class="hero__title">
@@ -38,8 +38,8 @@
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Imagen de fondo (vacío = foto de la bandera incluida en el tema)" },
     { "type": "video", "id": "video", "label": "Vídeo de fondo (opcional, sustituye a la imagen)" },
-    { "type": "checkbox", "id": "show_title", "label": "Mostrar el nombre en grande encima de la foto", "default": false },
-    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca)" },
+    { "type": "checkbox", "id": "show_title", "label": "Mostrar el nombre en grande encima de la foto", "default": true },
+    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca)", "default": "BLANC RECORDS" },
     { "type": "checkbox", "id": "overlay", "label": "Oscurecer un poco la parte de abajo (mejora la lectura del botón)", "default": true },
     { "type": "text", "id": "kicker", "label": "Texto pequeño", "default": "Drop 01 ya disponible" },
     { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Comprar" },

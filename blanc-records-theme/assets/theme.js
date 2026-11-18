@@ -10,6 +10,20 @@
     window.addEventListener('scroll', setOver, { passive: true });
   }
 
+  // Logotipo del pie a todo el ancho
+  function fitGiant() {
+    document.querySelectorAll('.giant').forEach(function (g) {
+      g.style.fontSize = '100px';
+      var r = document.createRange(); r.selectNodeContents(g);
+      var tw = r.getBoundingClientRect().width;
+      if (!tw) return;
+      g.style.fontSize = Math.floor(100 * g.clientWidth / tw * 0.99 * 10) / 10 + 'px';
+    });
+  }
+  fitGiant();
+  window.addEventListener('resize', fitGiant);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitGiant);
+
   // Contador del carrito
   function setCount(n) {
     document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = n; });

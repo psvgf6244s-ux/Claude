@@ -1,6 +1,6 @@
 {
   "sections": {
-    "hero": { "type": "hero", "settings": { "show_title": false, "overlay": true, "kicker": "Drop 01 ya disponible", "button_label": "Comprar", "height": 100 } },
+    "hero": { "type": "hero", "settings": { "show_title": true, "title": "BLANC RECORDS", "overlay": true, "kicker": "Drop 01 ya disponible", "button_label": "Comprar", "height": 100 } },
     "arrivals": { "type": "featured-collection", "settings": { "heading": "Novedades", "subheading": "Camisetas, manga larga y sudadera. Tirada única, sin reposición. Envíos desde Pamplona.", "limit": 10, "columns": 5, "show_all": true } }
   },
   "order": ["hero", "arrivals"]
