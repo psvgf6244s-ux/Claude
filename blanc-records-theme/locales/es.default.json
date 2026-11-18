@@ -89,5 +89,17 @@
       "one": "{{ count }} resultado para «{{ terms }}»",
       "other": "{{ count }} resultados para «{{ terms }}»"
     }
+  },
+  "sheet": {
+    "added": "Añadido",
+    "close": "Cerrar carrito",
+    "complete_look": "Completa el look",
+    "keep": "Seguir comprando",
+    "size": "Talla",
+    "remove_one": "Quitar una",
+    "add_one": "Añadir una",
+    "add_size": "Añadir en talla",
+    "taxes_shipping": "IVA incluido. Envío calculado al pagar.",
+    "legal_html": "Al tramitar el pedido aceptas las <a href=\"{{ terms }}\">condiciones de venta</a> y la <a href=\"{{ privacy }}\">política de privacidad</a>."
   }
 }

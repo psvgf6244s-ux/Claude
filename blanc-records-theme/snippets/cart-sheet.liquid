@@ -1,0 +1,33 @@
+{%- comment -%}
+  Carrito que sube desde abajo al añadir una prenda o al pulsar el carrito.
+  El contenido lo rellena assets/theme.js con /cart.js y /collections/all/products.json.
+{%- endcomment -%}
+<div class="sheet-bg" hidden data-sheet
+  data-money-format="{{ shop.money_format | escape }}"
+  data-strings='{"title":{{ 'cart.title' | t | json | escape }},"empty":{{ 'cart.empty' | t | json | escape }},"size":{{ 'sheet.size' | t | json | escape }},"remove_one":{{ 'sheet.remove_one' | t | json | escape }},"add_one":{{ 'sheet.add_one' | t | json | escape }},"checkout":{{ 'cart.checkout' | t | json | escape }},"add_size":{{ 'sheet.add_size' | t | json | escape }},"error":{{ 'products.error' | t | json | escape }}}'>
+  <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="grab" aria-hidden="true"></div>
+    <header class="sheet-h">
+      <strong id="sheet-title" data-sheet-title>{{ 'cart.title' | t }}</strong>
+      <span class="added" data-sheet-added hidden><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{{ 'sheet.added' | t }}</span>
+      <button class="x" type="button" aria-label="{{ 'sheet.close' | t }}" data-sheet-close><span></span><span></span></button>
+    </header>
+    <div class="sheet-body">
+      <div data-sheet-lines></div>
+      <div class="ups-wrap" data-sheet-ups-wrap hidden>
+        <p class="up ups-t">{{ 'sheet.complete_look' | t }}</p>
+        <div class="ups" data-sheet-ups></div>
+      </div>
+    </div>
+    <footer class="sheet-f">
+      <div class="tot"><span class="up">{{ 'cart.subtotal' | t }}</span><strong data-sheet-total>{{ cart.total_price | money }}</strong></div>
+      <p class="ship">{{ 'sheet.taxes_shipping' | t }}</p>
+      <div class="acts">
+        <button class="btn btn--ghost" type="button" data-sheet-close>{{ 'sheet.keep' | t }}</button>
+        <a class="btn" href="{{ routes.root_url }}checkout" data-sheet-checkout>{{ 'cart.checkout' | t }}</a>
+      </div>
+      <p class="sheet-legal">{{ 'sheet.legal_html' | t: terms: shop.terms_of_service.url, privacy: shop.privacy_policy.url }}</p>
+      <p class="note" role="status" data-sheet-note></p>
+    </footer>
+  </section>
+</div>
