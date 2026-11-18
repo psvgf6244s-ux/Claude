@@ -26,15 +26,41 @@ button,input,textarea,select{font:inherit;color:inherit}
 .btn[disabled]{opacity:.4;cursor:not-allowed}
 
 /* cabecera */
-.bar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding-block:14px;padding-top:max(14px,env(safe-area-inset-top,0px));background:var(--bg);transition:background .25s,color .25s}
-.bar__nav,.bar__right{display:flex;gap:14px;flex-wrap:wrap;text-transform:uppercase;font-weight:600;font-size:11px}
-.bar__right{justify-content:flex-end}
-.bar__nav a,.bar__right a{min-height:28px;display:inline-flex;align-items:center}
-.bar__mark{font-size:14px;transition:opacity .25s}
-.bar--over.is-over{background:transparent;color:#fff}
-.bar--over.is-over .bar__mark{opacity:0}
+.bar{position:sticky;top:0;z-index:20;height:calc(64px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;background:var(--bg);color:var(--fg);border-bottom:1px solid var(--line);transition:background .3s,color .3s,border-color .3s}
 .template-index .bar--over{position:fixed;left:0;right:0}
-@media (max-width:640px){.bar{grid-template-columns:1fr auto}.bar__mark{display:none}.bar__nav{gap:12px}.bar__account,.bar__right a[href*="search"]{display:none}}
+.bar--over.is-over{background:transparent;color:#fff;border-color:transparent}
+.nav{display:flex;gap:28px}
+.nav a,.bar__link,.cart{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.nav a,.bar__link{position:relative;padding-block:10px}
+.nav a::after,.bar__link::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav a:hover::after,.nav a[aria-current="page"]::after,.bar__link:hover::after{transform:scaleX(1)}
+.bar__mark{display:block;line-height:0;color:inherit}
+.logo-mark{display:block;width:auto;height:28px}
+.bar__mark .logo-mark{transition:transform .3s ease}
+.bar__mark:hover .logo-mark{transform:rotate(-6deg)}
+.bar__logo{height:auto}
+.bar__right{justify-self:end;display:flex;align-items:center;gap:22px}
+.cart{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.cart .bag{width:22px;height:22px}
+.badge{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--fg);color:var(--bg);display:inline-grid;place-items:center;font-size:10.5px;letter-spacing:0;font-variant-numeric:tabular-nums}
+.bar--over.is-over .badge{background:#fff;color:#0a0a0a}
+.badge[data-n="0"]{display:none}
+.badge.bump{animation:bump .4s ease}
+@keyframes bump{40%{transform:scale(1.35)}}
+.burger{display:none;width:44px;height:44px;margin-left:-10px;background:none;border:0;cursor:pointer;position:relative;color:inherit}
+.burger span{position:absolute;left:11px;right:11px;height:1.6px;background:currentColor;transition:transform .25s,top .25s}
+.burger span:first-child{top:17px}.burger span:last-child{top:25px}
+.burger.is-open span:first-child{top:21px;transform:rotate(45deg)}.burger.is-open span:last-child{top:21px;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:60;background:var(--fg);color:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:max(20px,env(safe-area-inset-bottom,0px));animation:menuIn .3s ease}
+.menu[hidden]{display:none}
+@keyframes menuIn{from{opacity:0;transform:translateY(-12px)}}
+.menu-top{height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.menu-mark .logo-mark{height:26px}
+.menu-links{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.menu-links a{font-family:var(--font-heading);font-weight:800;letter-spacing:-.04em;line-height:1;font-size:clamp(44px,13vw,96px);text-transform:uppercase}
+.menu-foot{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+@media (max-width:760px){.nav,.cart-l,.bar__search,.bar__account{display:none}.burger{display:block}.logo-mark{height:24px}}
+@media (prefers-reduced-motion:reduce){.menu,.badge.bump{animation:none}}
 
 /* hero */
 .hero{position:relative;height:var(--hero-h,100vh);height:var(--hero-h,100svh);min-height:480px;overflow:hidden;color:#fff;background:#6f7a86}

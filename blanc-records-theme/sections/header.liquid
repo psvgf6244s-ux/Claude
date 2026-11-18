@@ -1,24 +1,48 @@
 <header class="bar gut{% if section.settings.transparent_on_home and template.name == 'index' %} bar--over{% endif %}" data-bar>
-  <nav class="bar__nav" aria-label="{{ 'accessibility.main_nav' | t }}">
+  <button class="burger" type="button" aria-label="{{ 'header.open_menu' | t }}" aria-expanded="false" aria-controls="menu" data-menu-open><span></span><span></span></button>
+  <nav class="nav" aria-label="{{ 'accessibility.main_nav' | t }}">
     {%- for link in section.settings.menu.links -%}
       <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
     {%- endfor -%}
   </nav>
-  <a class="bar__mark" href="{{ routes.root_url }}">
+  <a class="bar__mark" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, {{ 'header.home' | t }}">
     {%- if section.settings.logo != blank -%}
-      {{ section.settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'bar__logo', width: section.settings.logo_width }}
+      {{ section.settings.logo | image_url: width: 300 | image_tag: alt: '', class: 'bar__logo', width: section.settings.logo_width }}
     {%- else -%}
-      {% render 'wordmark' %}
+      {% render 'logo-mark' %}
     {%- endif -%}
   </a>
   <div class="bar__right">
-    <a href="{{ routes.search_url }}" class="bar__link">{{ 'header.search' | t }}</a>
+    <a href="{{ routes.search_url }}" class="bar__link bar__search">{{ 'header.search' | t }}</a>
     {%- if shop.customer_accounts_enabled -%}
       <a href="{{ routes.account_url }}" class="bar__link bar__account">{{ 'header.account' | t }}</a>
     {%- endif -%}
-    <a href="{{ routes.cart_url }}" class="bar__link">{{ 'header.cart' | t }} (<span data-cart-count>{{ cart.item_count }}</span>)</a>
+    <a href="{{ routes.cart_url }}" class="cart" aria-label="{{ 'header.cart' | t }}, {{ cart.item_count }}">
+      <svg class="bag" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="cart-l">{{ 'header.cart' | t }}</span>
+      <span class="badge" data-cart-count data-n="{{ cart.item_count }}">{{ cart.item_count }}</span>
+    </a>
   </div>
 </header>
+
+<div class="menu" id="menu" hidden data-menu>
+  <div class="menu-top gut">
+    <button class="burger is-open" type="button" aria-label="{{ 'header.close_menu' | t }}" data-menu-close><span></span><span></span></button>
+    <span class="menu-mark">{% render 'logo-mark' %}</span>
+    <span></span>
+  </div>
+  <nav class="menu-links gut" aria-label="{{ 'header.menu' | t }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+    {%- endfor -%}
+  </nav>
+  <div class="menu-foot gut">
+    {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+    {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">TikTok</a>{%- endif -%}
+    <a href="{{ routes.search_url }}">{{ 'header.search' | t }}</a>
+    {%- if shop.customer_accounts_enabled -%}<a href="{{ routes.account_url }}">{{ 'header.account' | t }}</a>{%- endif -%}
+  </div>
+</div>
 
 {% schema %}
 {
@@ -26,8 +50,8 @@
   "class": "section-header",
   "settings": [
     { "type": "link_list", "id": "menu", "label": "Menú", "default": "main-menu" },
-    { "type": "image_picker", "id": "logo", "label": "Logo (opcional; si no, se usa el nombre)" },
-    { "type": "range", "id": "logo_width", "label": "Ancho del logo", "min": 60, "max": 240, "step": 10, "unit": "px", "default": 120 },
+    { "type": "image_picker", "id": "logo", "label": "Logo en imagen (opcional; si no, se usa el logo de BLANC)" },
+    { "type": "range", "id": "logo_width", "label": "Ancho del logo", "min": 40, "max": 240, "step": 10, "unit": "px", "default": 70 },
     { "type": "checkbox", "id": "transparent_on_home", "label": "Transparente sobre la portada", "default": true }
   ]
 }

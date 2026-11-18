@@ -5,7 +5,7 @@
   // Cabecera transparente sobre la portada
   var bar = document.querySelector('[data-bar].bar--over');
   if (bar) {
-    var setOver = function () { bar.classList.toggle('is-over', window.scrollY < window.innerHeight * 0.6); };
+    var setOver = function () { bar.classList.toggle('is-over', window.scrollY < window.innerHeight * 0.75); };
     setOver();
     window.addEventListener('scroll', setOver, { passive: true });
   }
@@ -26,7 +26,23 @@
 
   // Contador del carrito
   function setCount(n) {
-    document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = n; });
+    document.querySelectorAll('[data-cart-count]').forEach(function (el) {
+      el.textContent = n; el.dataset.n = n;
+      el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    });
+  }
+
+  // Menú del móvil a pantalla completa
+  var menu = document.querySelector('[data-menu]');
+  var openBtn = document.querySelector('[data-menu-open]');
+  if (menu && openBtn) {
+    var closeBtn = menu.querySelector('[data-menu-close]');
+    var openMenu = function () { menu.hidden = false; openBtn.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; closeBtn.focus(); };
+    var closeMenu = function () { if (menu.hidden) return; menu.hidden = true; openBtn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; openBtn.focus(); };
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    menu.addEventListener('click', function (e) { if (e.target.closest('.menu-links a')) closeMenu(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
   }
 
   // Formato de precio con el formato de la tienda

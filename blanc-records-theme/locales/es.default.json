@@ -17,7 +17,11 @@
   "header": {
     "search": "Buscar",
     "account": "Cuenta",
-    "cart": "Carrito"
+    "cart": "Carrito",
+    "home": "ir al inicio",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú",
+    "menu": "Menú"
   },
   "footer": {
     "cookies": "Preferencias de cookies"
