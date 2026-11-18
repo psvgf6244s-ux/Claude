@@ -1,0 +1,29 @@
+<footer class="foot gut">
+  <nav class="foot__nav" aria-label="{{ 'accessibility.legal_nav' | t }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title | escape }}</a>
+    {%- endfor -%}
+    <button type="button" class="foot__cookies" data-cookie-prefs>{{ 'footer.cookies' | t }}</button>
+  </nav>
+  <div class="foot__meta up">
+    <span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</span>
+    <span class="foot__social">
+      {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" rel="noopener" target="_blank">Instagram</a>{%- endif -%}
+      {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank">TikTok</a>{%- endif -%}
+    </span>
+    {%- if section.settings.show_payment -%}
+      <span class="foot__pay">{%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'pay-icon' }}{%- endfor -%}</span>
+    {%- endif -%}
+  </div>
+  <p class="giant" aria-hidden="true">{% render 'wordmark' %}</p>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menú legal", "default": "footer" },
+    { "type": "checkbox", "id": "show_payment", "label": "Mostrar métodos de pago", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": { "kicker": "Drop 01 ya disponible", "button_label": "Comprar", "height": 95 } },
+    "arrivals": { "type": "featured-collection", "settings": { "heading": "Novedades", "subheading": "Drop 01 · Tirada única, sin reposición. Envíos desde Pamplona.", "limit": 8, "columns": 4, "show_all": true } }
+  },
+  "order": ["hero", "arrivals"]
+}

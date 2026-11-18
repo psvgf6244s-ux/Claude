@@ -1,0 +1,128 @@
+{%- assign current = product.selected_or_first_available_variant -%}
+<section class="pdp gut" data-product>
+  <div class="pdp__info">
+    <h1 class="pdp__title">{{ product.title | escape }}</h1>
+    <p class="pdp__price" data-price>
+      {%- if current.compare_at_price > current.price -%}<s>{{ current.compare_at_price | money }}</s> {% endif -%}
+      {{ current.price | money }}
+    </p>
+    {%- if cart.taxes_included -%}<p class="pdp__tax">{{ 'products.tax_included' | t }}</p>{%- endif -%}
+    <div class="acc">
+      <details open>
+        <summary class="up">{{ 'products.details' | t }}</summary>
+        <div class="acc__body rte">{{ product.description }}</div>
+      </details>
+      {%- if section.settings.size_chart_page != blank -%}
+        <details>
+          <summary class="up">{{ 'products.size_chart' | t }}</summary>
+          <div class="acc__body rte">{{ section.settings.size_chart_page.content }}</div>
+        </details>
+      {%- endif -%}
+      {%- if section.settings.shipping_page != blank -%}
+        <details>
+          <summary class="up">{{ 'products.shipping_returns' | t }}</summary>
+          <div class="acc__body rte">
+            {{ section.settings.shipping_page.content | strip_html | truncatewords: 60 }}
+            <p><a href="{{ section.settings.shipping_page.url }}">{{ 'products.read_more' | t }}</a></p>
+          </div>
+        </details>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="pdp__stage">
+    <div class="pdp__slides" data-slides>
+      {%- for media in product.media -%}
+        <div class="pdp__slide{% if forloop.first %} is-active{% endif %}" data-slide="{{ forloop.index0 }}" data-media-id="{{ media.id }}">
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              {%- liquid
+                assign load = 'lazy'
+                if forloop.first
+                  assign load = 'eager'
+                endif
+              -%}
+              {{ media | image_url: width: 1400 | image_tag:
+                widths: '500, 800, 1100, 1400',
+                sizes: '(min-width: 860px) 45vw, 100vw',
+                loading: load,
+                alt: media.alt | default: product.title }}
+            {%- when 'video' -%}
+              {{ media | video_tag: controls: true, playsinline: true }}
+            {%- else -%}
+              {{ media | media_tag }}
+          {%- endcase -%}
+        </div>
+      {%- else -%}
+        <div class="pdp__slide is-active">{{ 'apparel-1' | placeholder_svg_tag: 'placeholder' }}</div>
+      {%- endfor -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <div class="pdp__dots" role="group" aria-label="{{ 'products.gallery' | t }}">
+        {%- for media in product.media -%}
+          <button type="button" data-dot="{{ forloop.index0 }}" aria-label="{{ 'products.image_n' | t: n: forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="pdp__buy">
+    {%- form 'product', product, class: 'pdp__form', data-product-form: '' -%}
+      <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <fieldset class="sizes">
+            <legend class="up">{{ option.name | escape }}</legend>
+            <div class="sizes__row">
+              {%- for value in option.values -%}
+                <label class="size">
+                  <input type="radio" name="option-{{ forloop.parentloop.index0 }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %} data-option="{{ forloop.parentloop.index0 }}">
+                  <span>{{ value | escape }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endfor -%}
+      {%- endunless -%}
+      <button type="submit" name="add" class="btn btn--block" data-add{% unless current.available %} disabled{% endunless %}>
+        <span data-add-label>{%- if current.available -%}{{ 'products.add_to_cart' | t }} — {{ current.price | money }}{%- else -%}{{ 'products.sold_out' | t }}{%- endif -%}</span>
+      </button>
+      <p class="note" role="status" data-status></p>
+      {{ form | payment_terms }}
+    {%- endform -%}
+  </div>
+
+  <script type="application/json" data-variants>
+    {{ product.variants | json }}
+  </script>
+  <script type="application/json" data-strings>
+    {"add": {{ 'products.add_to_cart' | t | json }}, "soldOut": {{ 'products.sold_out' | t | json }}, "unavailable": {{ 'products.unavailable' | t | json }}, "added": {{ 'products.added' | t | json }}, "error": {{ 'products.error' | t | json }}, "moneyFormat": {{ shop.money_format | json }}}
+  </script>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "url": {{ request.origin | append: product.url | json }},
+  {%- if product.featured_media -%}"image": [{{ product.featured_media | image_url: width: 1200 | prepend: 'https:' | json }}],{%- endif -%}
+  "description": {{ product.description | strip_html | json }},
+  "brand": {"@type": "Brand", "name": {{ product.vendor | json }}},
+  "offers": [
+    {%- for variant in product.variants -%}
+    {"@type": "Offer", "sku": {{ variant.sku | json }}, "availability": "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}", "price": {{ variant.price | divided_by: 100.00 | json }}, "priceCurrency": {{ cart.currency.iso_code | json }}, "url": {{ request.origin | append: variant.url | json }}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "Ficha de producto",
+  "settings": [
+    { "type": "page", "id": "size_chart_page", "label": "Página con la guía de tallas" },
+    { "type": "page", "id": "shipping_page", "label": "Página de envíos y devoluciones" }
+  ]
+}
+{% endschema %}

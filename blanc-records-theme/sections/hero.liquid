@@ -1,0 +1,37 @@
+<section class="hero{% if section.settings.image == blank and section.settings.video == blank %} hero--sky{% endif %}" style="--hero-h: {{ section.settings.height }}vh;">
+  {%- if section.settings.video != blank -%}
+    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero__media', image_size: '1920x' }}
+  {%- elsif section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 2400 | image_tag:
+      widths: '750, 1100, 1500, 1920, 2400',
+      sizes: '100vw',
+      fetchpriority: 'high',
+      class: 'hero__media',
+      alt: section.settings.image.alt | default: shop.name }}
+  {%- endif -%}
+  <h1 class="hero__title">
+    {%- if section.settings.title != blank -%}{{ section.settings.title | escape }}{%- else -%}{% render 'wordmark' %}{%- endif -%}
+  </h1>
+  <div class="hero__cta gut">
+    {%- if section.settings.kicker != blank -%}<span class="up">{{ section.settings.kicker | escape }}</span>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn btn--light" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Portada (hero)",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen de fondo" },
+    { "type": "video", "id": "video", "label": "Vídeo de fondo (opcional, sustituye a la imagen)" },
+    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca con ®)" },
+    { "type": "text", "id": "kicker", "label": "Texto pequeño", "default": "Drop 01 ya disponible" },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Comprar" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón" },
+    { "type": "range", "id": "height", "label": "Alto", "min": 50, "max": 100, "step": 5, "unit": "vh", "default": 95 }
+  ],
+  "presets": [{ "name": "Portada (hero)" }]
+}
+{% endschema %}

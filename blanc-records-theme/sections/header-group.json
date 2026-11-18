@@ -1,0 +1,8 @@
+{
+  "type": "header",
+  "name": "Cabecera",
+  "sections": {
+    "header": { "type": "header", "settings": { "menu": "main-menu", "transparent_on_home": true, "logo_width": 120 } }
+  },
+  "order": ["header"]
+}

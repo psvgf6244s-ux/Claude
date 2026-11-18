@@ -1,0 +1,25 @@
+<section class="page gut">
+  <h1 class="h-up">{{ page.title | escape }}</h1>
+  {%- if page.content != blank -%}<div class="rte page__body">{{ page.content }}</div>{%- endif -%}
+  {%- form 'contact', class: 'contact', id: 'contact-form' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="note" role="status">{{ 'contact.success' | t }}</p>
+    {%- else -%}
+      {%- if form.errors -%}<p class="note" role="alert">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <label for="c-name">{{ 'contact.name' | t }}<input id="c-name" type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}" required></label>
+      <label for="c-email">{{ 'contact.email' | t }}<input id="c-email" type="email" name="contact[email]" autocomplete="email" value="{{ form.email }}" required></label>
+      <label for="c-order">{{ 'contact.order' | t }}<input id="c-order" type="text" name="contact[pedido]"></label>
+      <label for="c-body">{{ 'contact.message' | t }}<textarea id="c-body" name="contact[body]" rows="6" required>{{ form.body }}</textarea></label>
+      <label class="check" for="c-privacy">
+        <input id="c-privacy" type="checkbox" name="contact[acepta_privacidad]" value="si" required>
+        <span>{{ 'contact.privacy_html' | t: privacy: shop.privacy_policy.url }}</span>
+      </label>
+      <p class="news__legal">{{ 'contact.info_basic_html' | t: privacy: shop.privacy_policy.url }}</p>
+      <button type="submit" class="btn">{{ 'contact.send' | t }}</button>
+    {%- endif -%}
+  {%- endform -%}
+</section>
+
+{% schema %}
+{ "name": "Contacto", "settings": [] }
+{% endschema %}

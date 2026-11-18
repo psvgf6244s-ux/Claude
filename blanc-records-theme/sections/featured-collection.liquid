@@ -1,0 +1,32 @@
+{%- assign col = section.settings.collection | default: collections.all -%}
+<section class="arrivals gut">
+  {%- if section.settings.heading != blank -%}<h2 class="h-up">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+  {%- if section.settings.subheading != blank -%}<p class="sub">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+  <div class="grid" style="--cols: {{ section.settings.columns }};">
+    {%- for product in col.products limit: section.settings.limit -%}
+      {% render 'product-card', product: product %}
+    {%- else -%}
+      {%- for i in (1..4) -%}
+        <div class="card"><div class="card__media">{{ 'apparel-1' | placeholder_svg_tag: 'placeholder' }}</div><span class="card__title">{{ 'products.example' | t }}</span><span class="card__price">{{ 8900 | money }}</span></div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+  {%- if section.settings.show_all and col.products_count > section.settings.limit -%}
+    <p class="more"><a class="btn" href="{{ col.url }}">{{ 'collections.view_all' | t }}</a></p>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Colección destacada",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Novedades" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Drop 01 · Tirada única, sin reposición. Envíos desde Pamplona." },
+    { "type": "collection", "id": "collection", "label": "Colección" },
+    { "type": "range", "id": "limit", "label": "Productos", "min": 2, "max": 16, "step": 1, "default": 8 },
+    { "type": "range", "id": "columns", "label": "Columnas en ordenador", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "checkbox", "id": "show_all", "label": "Botón 'Ver todo'", "default": true }
+  ],
+  "presets": [{ "name": "Colección destacada" }]
+}
+{% endschema %}

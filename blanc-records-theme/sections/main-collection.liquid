@@ -1,0 +1,26 @@
+{%- paginate collection.products by section.settings.per_page -%}
+<section class="arrivals gut">
+  <h1 class="h-up">{{ collection.title | escape }}</h1>
+  {%- if collection.description != blank -%}<div class="sub rte">{{ collection.description }}</div>{%- endif -%}
+  <div class="grid" style="--cols: {{ section.settings.columns }};">
+    {%- for product in collection.products -%}
+      {% render 'product-card', product: product %}
+    {%- else -%}
+      <p class="sub">{{ 'collections.empty' | t }}</p>
+    {%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 -%}
+    <nav class="pager" aria-label="{{ 'general.pagination' | t }}">{{ paginate | default_pagination: next: '→', previous: '←' }}</nav>
+  {%- endif -%}
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Colección",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Productos por página", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "range", "id": "columns", "label": "Columnas en ordenador", "min": 2, "max": 5, "step": 1, "default": 4 }
+  ]
+}
+{% endschema %}

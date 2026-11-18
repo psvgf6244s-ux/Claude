@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+  {%- endif -%}
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+  {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
+  {% render 'meta-tags' %}
+
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- assign heading_font = settings.type_heading -%}
+  {%- assign body_font = settings.type_body -%}
+  {{ heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+  <style>
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {%- assign heading_bold = heading_font | font_modify: 'weight', 'bolder' -%}
+    {{ heading_bold | font_face: font_display: 'swap' }}
+    :root{
+      --bg: {{ settings.color_bg }};
+      --fg: {{ settings.color_fg }};
+      --dim: {{ settings.color_dim }};
+      --line: {{ settings.color_line }};
+      --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+      --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+    }
+  </style>
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  {{ content_for_header }}
+</head>
+<body class="template-{{ template.name }}">
+  <a class="skip-link" href="#main">{{ 'accessibility.skip' | t }}</a>
+  {% sections 'header-group' %}
+  <main id="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+  {% sections 'footer-group' %}
+</body>
+</html>

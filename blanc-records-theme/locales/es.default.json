@@ -1,0 +1,89 @@
+{
+  "general": {
+    "page": "Página {{ page }}",
+    "pagination": "Paginación",
+    "404": "Esta página no existe o ya no está disponible.",
+    "password_title": "Muy pronto",
+    "password_text": "La tienda abre con el próximo drop. Déjanos tu email y te avisamos.",
+    "password_enter": "Entrar con contraseña",
+    "password_label": "Contraseña",
+    "password_submit": "Entrar"
+  },
+  "accessibility": {
+    "skip": "Saltar al contenido",
+    "main_nav": "Principal",
+    "legal_nav": "Información legal"
+  },
+  "header": {
+    "search": "Buscar",
+    "account": "Cuenta",
+    "cart": "Carrito"
+  },
+  "footer": {
+    "cookies": "Preferencias de cookies"
+  },
+  "products": {
+    "from": "Desde",
+    "sold_out": "Agotado",
+    "unavailable": "No disponible",
+    "add_to_cart": "Añadir al carrito",
+    "added": "Añadido al carrito.",
+    "error": "No se ha podido añadir. Inténtalo de nuevo.",
+    "tax_included": "IVA incluido. Gastos de envío calculados en la pantalla de pago.",
+    "details": "Detalles",
+    "size_chart": "Guía de tallas",
+    "shipping_returns": "Envíos y devoluciones",
+    "read_more": "Leer completo",
+    "gallery": "Fotos del producto",
+    "image_n": "Foto {{ n }}",
+    "example": "Producto de ejemplo"
+  },
+  "collections": {
+    "view_all": "Ver todo",
+    "empty": "Todavía no hay productos en esta colección.",
+    "all_title": "Colecciones",
+    "count": {
+      "one": "{{ count }} producto",
+      "other": "{{ count }} productos"
+    }
+  },
+  "cart": {
+    "title": "Carrito",
+    "quantity": "Cantidad",
+    "remove": "Quitar",
+    "subtotal": "Subtotal",
+    "taxes_included_shipping": "IVA incluido. Los gastos de envío se calculan en la pantalla de pago, antes de confirmar.",
+    "taxes_shipping": "Impuestos y gastos de envío calculados en la pantalla de pago.",
+    "accept_terms_html": "He leído y acepto las <a href=\"{{ terms }}\">condiciones de venta</a> y la <a href=\"{{ privacy }}\">política de privacidad</a>.",
+    "accept_terms_required": "Marca la casilla de condiciones de venta para continuar.",
+    "update": "Actualizar",
+    "checkout": "Tramitar pedido",
+    "empty": "Tu carrito está vacío.",
+    "continue": "Ver productos"
+  },
+  "newsletter": {
+    "email": "Tu email",
+    "subscribe": "Suscribirme",
+    "success": "Apuntado. Te avisamos antes del próximo drop.",
+    "legal_html": "Al suscribirte aceptas recibir emails comerciales de BLANC RECORDS. Puedes darte de baja en cualquier momento desde el enlace de cada email. Más información en la <a href=\"{{ privacy }}\">política de privacidad</a>."
+  },
+  "contact": {
+    "name": "Nombre",
+    "email": "Email",
+    "order": "Número de pedido (si lo tienes)",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "success": "Mensaje enviado. Te contestamos en 24–48 h laborables.",
+    "privacy_html": "He leído y acepto la <a href=\"{{ privacy }}\">política de privacidad</a>.",
+    "info_basic_html": "Responsable: BLANC RECORDS. Finalidad: responder a tu consulta. Legitimación: tu consentimiento. Destinatarios: Shopify como proveedor de la tienda; no se ceden datos a terceros salvo obligación legal. Derechos: acceso, rectificación, supresión y demás, como se explica en la <a href=\"{{ privacy }}\">política de privacidad</a>."
+  },
+  "search": {
+    "title": "Buscar",
+    "placeholder": "Sudadera, camiseta…",
+    "submit": "Buscar",
+    "count": {
+      "one": "{{ count }} resultado para «{{ terms }}»",
+      "other": "{{ count }} resultados para «{{ terms }}»"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "current": {
+    "wordmark_text": "Blanc Records",
+    "wordmark_registered": false,
+    "color_bg": "#ffffff",
+    "color_fg": "#0a0a0a",
+    "color_dim": "#636363",
+    "color_line": "#e3e3e3",
+    "type_heading": "inter_n7",
+    "type_body": "inter_n4",
+    "social_instagram": "https://www.instagram.com/blancrecords.co",
+    "social_tiktok": "https://www.tiktok.com/@blancrecords.co"
+  },
+  "presets": {
+    "Default": {
+      "wordmark_text": "Blanc Records",
+      "color_bg": "#ffffff",
+      "color_fg": "#0a0a0a",
+      "color_dim": "#636363",
+      "color_line": "#e3e3e3",
+      "type_heading": "inter_n7",
+      "type_body": "inter_n4"
+    }
+  }
+}

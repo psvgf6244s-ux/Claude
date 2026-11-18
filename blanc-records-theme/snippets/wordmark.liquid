@@ -1,0 +1,3 @@
+{%- comment -%} Logotipo de texto: nombre de la tienda con ® elevada. {%- endcomment -%}
+{%- assign name = settings.wordmark_text | default: shop.name -%}
+<span class="wordmark">{{ name | escape }}{% if settings.wordmark_registered %}<span class="reg" aria-hidden="true">®</span>{% endif %}</span>

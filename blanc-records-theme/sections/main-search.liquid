@@ -1,0 +1,24 @@
+<section class="arrivals gut">
+  <h1 class="h-up">{{ 'search.title' | t }}</h1>
+  <form action="{{ routes.search_url }}" method="get" role="search" class="news__row search">
+    <label for="q" class="visually-hidden">{{ 'search.title' | t }}</label>
+    <input id="q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}">
+    <input type="hidden" name="type" value="product">
+    <button type="submit" class="btn">{{ 'search.submit' | t }}</button>
+  </form>
+  {%- if search.performed -%}
+    {%- paginate search.results by 24 -%}
+      <p class="sub">{{ 'search.count' | t: count: search.results_count, terms: search.terms }}</p>
+      <div class="grid" style="--cols: 4;">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}<nav class="pager">{{ paginate | default_pagination }}</nav>{%- endif -%}
+    {%- endpaginate -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Búsqueda", "settings": [] }
+{% endschema %}

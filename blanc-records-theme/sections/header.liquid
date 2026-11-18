@@ -1,0 +1,34 @@
+<header class="bar gut{% if section.settings.transparent_on_home and template.name == 'index' %} bar--over{% endif %}" data-bar>
+  <nav class="bar__nav" aria-label="{{ 'accessibility.main_nav' | t }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+    {%- endfor -%}
+  </nav>
+  <a class="bar__mark" href="{{ routes.root_url }}">
+    {%- if section.settings.logo != blank -%}
+      {{ section.settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'bar__logo', width: section.settings.logo_width }}
+    {%- else -%}
+      {% render 'wordmark' %}
+    {%- endif -%}
+  </a>
+  <div class="bar__right">
+    <a href="{{ routes.search_url }}" class="bar__link">{{ 'header.search' | t }}</a>
+    {%- if shop.customer_accounts_enabled -%}
+      <a href="{{ routes.account_url }}" class="bar__link bar__account">{{ 'header.account' | t }}</a>
+    {%- endif -%}
+    <a href="{{ routes.cart_url }}" class="bar__link">{{ 'header.cart' | t }} (<span data-cart-count>{{ cart.item_count }}</span>)</a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Cabecera",
+  "class": "section-header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menú", "default": "main-menu" },
+    { "type": "image_picker", "id": "logo", "label": "Logo (opcional; si no, se usa el nombre)" },
+    { "type": "range", "id": "logo_width", "label": "Ancho del logo", "min": 60, "max": 240, "step": 10, "unit": "px", "default": 120 },
+    { "type": "checkbox", "id": "transparent_on_home", "label": "Transparente sobre la portada", "default": true }
+  ]
+}
+{% endschema %}

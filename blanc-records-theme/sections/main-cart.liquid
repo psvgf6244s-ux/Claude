@@ -1,0 +1,49 @@
+<section class="cartpage gut">
+  <h1 class="h-up">{{ 'cart.title' | t }}</h1>
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" class="cartpage__form" novalidate>
+      <ul class="lines">
+        {%- for item in cart.items -%}
+          <li class="line">
+            <a class="line__img" href="{{ item.url }}">
+              {%- if item.image -%}{{ item.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: item.product.title }}{%- endif -%}
+            </a>
+            <div class="line__info">
+              <a href="{{ item.url }}" class="line__title">{{ item.product.title | escape }}</a>
+              {%- unless item.product.has_only_default_variant -%}<span class="line__meta">{{ item.variant.title | escape }}</span>{%- endunless -%}
+              <span class="line__meta">{{ item.final_price | money }}</span>
+            </div>
+            <div class="line__qty">
+              <label class="visually-hidden" for="qty-{{ forloop.index }}">{{ 'cart.quantity' | t }}</label>
+              <input id="qty-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric">
+              <a class="line__remove" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
+            </div>
+            <span class="line__total">{{ item.final_line_price | money }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="cartpage__summary">
+        <div class="row"><span class="up">{{ 'cart.subtotal' | t }}</span><strong>{{ cart.total_price | money_with_currency }}</strong></div>
+        <p class="note">{%- if cart.taxes_included -%}{{ 'cart.taxes_included_shipping' | t }}{%- else -%}{{ 'cart.taxes_shipping' | t }}{%- endif -%}</p>
+        <label class="check" for="cart-terms">
+          <input type="checkbox" id="cart-terms" required data-terms>
+          <span>{{ 'cart.accept_terms_html' | t: terms: shop.terms_of_service.url, privacy: shop.privacy_policy.url }}</span>
+        </label>
+        <div class="cartpage__actions">
+          <button type="submit" name="update" class="btn btn--ghost">{{ 'cart.update' | t }}</button>
+          <button type="submit" name="checkout" class="btn" data-checkout>{{ 'cart.checkout' | t }}</button>
+        </div>
+        <p class="note" role="status" data-terms-msg></p>
+        {%- if additional_checkout_buttons -%}<div class="cartpage__dynamic">{{ content_for_additional_checkout_buttons }}</div>{%- endif -%}
+      </div>
+    </form>
+  {%- else -%}
+    <p class="sub">{{ 'cart.empty' | t }}</p>
+    <p><a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a></p>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Carrito", "settings": [] }
+{% endschema %}
