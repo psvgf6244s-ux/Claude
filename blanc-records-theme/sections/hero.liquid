@@ -1,4 +1,10 @@
-<section class="hero{% if section.settings.image == blank and section.settings.video == blank %} hero--sky{% endif %}" style="--hero-h: {{ section.settings.height }}vh;">
+{%- liquid
+  assign focal = '52% 50%'
+  if section.settings.image != blank and section.settings.image.presentation.focal_point != blank
+    assign focal = section.settings.image.presentation.focal_point
+  endif
+-%}
+<section class="hero{% if section.settings.overlay %} hero--overlay{% endif %}" style="--hero-h: {{ section.settings.height }}vh; --focal: {{ focal }};">
   {%- if section.settings.video != blank -%}
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero__media', image_size: '1920x' }}
   {%- elsif section.settings.image != blank -%}
@@ -8,10 +14,16 @@
       fetchpriority: 'high',
       class: 'hero__media',
       alt: section.settings.image.alt | default: shop.name }}
+  {%- else -%}
+    <img class="hero__media" src="{{ 'hero.jpg' | asset_url }}" alt="Modelo con ropa beige de BLANC RECORDS sujetando una bandera azul marino con el nombre de la marca en un paisaje volcánico" fetchpriority="high" width="1672" height="941">
   {%- endif -%}
-  <h1 class="hero__title">
-    {%- if section.settings.title != blank -%}{{ section.settings.title | escape }}{%- else -%}{% render 'wordmark' %}{%- endif -%}
-  </h1>
+  {%- if section.settings.show_title -%}
+    <h1 class="hero__title">
+      {%- if section.settings.title != blank -%}{{ section.settings.title | escape }}{%- else -%}{% render 'wordmark' %}{%- endif -%}
+    </h1>
+  {%- else -%}
+    <h1 class="visually-hidden">{{ shop.name | escape }}</h1>
+  {%- endif -%}
   <div class="hero__cta gut">
     {%- if section.settings.kicker != blank -%}<span class="up">{{ section.settings.kicker | escape }}</span>{%- endif -%}
     {%- if section.settings.button_label != blank -%}
@@ -24,13 +36,15 @@
 {
   "name": "Portada (hero)",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Imagen de fondo" },
+    { "type": "image_picker", "id": "image", "label": "Imagen de fondo (vacío = foto de la bandera incluida en el tema)" },
     { "type": "video", "id": "video", "label": "Vídeo de fondo (opcional, sustituye a la imagen)" },
-    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca con ®)" },
+    { "type": "checkbox", "id": "show_title", "label": "Mostrar el nombre en grande encima de la foto", "default": false },
+    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca)" },
+    { "type": "checkbox", "id": "overlay", "label": "Oscurecer un poco la parte de abajo (mejora la lectura del botón)", "default": true },
     { "type": "text", "id": "kicker", "label": "Texto pequeño", "default": "Drop 01 ya disponible" },
     { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Comprar" },
     { "type": "url", "id": "button_link", "label": "Enlace del botón" },
-    { "type": "range", "id": "height", "label": "Alto", "min": 50, "max": 100, "step": 5, "unit": "vh", "default": 95 }
+    { "type": "range", "id": "height", "label": "Alto", "min": 50, "max": 100, "step": 5, "unit": "vh", "default": 100 }
   ],
   "presets": [{ "name": "Portada (hero)" }]
 }
