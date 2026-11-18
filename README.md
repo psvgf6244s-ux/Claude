@@ -15,14 +15,25 @@ https://admin.shopify.com/store/dcryrx-qp/access_account y elige un plan.
 En el editor (Personalizar) puedes cambiar:
 - Portada: imagen o vídeo de fondo, texto pequeño y botón.
 - Colección destacada: qué colección sale en «Novedades».
-- Ficha de producto: qué página se abre en «Guía de tallas» y en «Envíos y devoluciones».
+- Ficha de producto: qué página se abre en «Envíos y devoluciones».
 - Ajustes del tema → Marca: el ® solo debe activarse si la marca está registrada (usarlo sin registro es publicidad engañosa).
 
 ## 3. Productos
-Los 7 productos del Drop 01 ya se crearon en borrador (35 variantes, tallas XS–XL). Cuando la tienda esté activa:
-- Sube las fotos: modelo de pie, fondo blanco, misma distancia y luz en todas. Formato vertical 3:4.
-- Pasa los productos de **Borrador** a **Activo**.
-- Pon nombre y descripción a los 5 que están «por definir».
+Catálogo del Drop 01 (carpeta `productos/`), tallas S–XL:
+
+| Producto | Tipo | Precio | Foto |
+|---|---|---|---|
+| Camiseta Zorros — Azul marino | Camiseta | 48 € | `camiseta-zorros-azul.jpg` |
+| Camiseta Zorros — Gris | Camiseta | 48 € | `camiseta-zorros-gris.jpg` |
+| Camiseta Zorros — Verde | Camiseta | 48 € | `camiseta-zorros-verde.jpg` |
+| Camiseta Manga Larga Cuadros | Camiseta manga larga | 55 € | `camiseta-manga-larga-cuadros.jpg` |
+| Sudadera Union | Sudadera | 79 € | `sudadera-union.jpg` |
+
+1. **Productos → Importar** → sube `productos/productos-shopify.csv`. Entran como borrador.
+2. En cada producto: añade su foto, pon el stock de cada talla y cambia el estado a **Activo**.
+3. Los 7 productos antiguos en borrador («Primera Toma», «por definir»…) ya no se usan: **archívalos o bórralos**.
+
+La guía de tallas sale sola en cada ficha según el **Tipo** del producto, con las medidas del tech pack (pecho, largo y manga u hombros). No cambies el tipo o dejará de salir.
 
 ## 4. Textos legales
 | Archivo | Dónde va en Shopify |
