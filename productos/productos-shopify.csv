@@ -1,26 +1,21 @@
 Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Variant SKU,Variant Grams,Variant Inventory Tracker,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Requires Shipping,Variant Taxable,Image Src,Image Alt Text,Status
-camiseta-zorros-azul,Camiseta Zorros — Azul marino,"<p>Manga corta con lavado vintage y corte amplio de hombro caído. Costuras curvas en el delantero, estampado de los tres zorros en efecto craquelado y bajo con capa de camuflaje que asoma por debajo.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta,"Drop 01, Camisetas, Zorros",TRUE,Talla,XS,BR-D01-ZOR-AZ-XS,,shopify,deny,manual,48.00,TRUE,TRUE,,,draft
-camiseta-zorros-azul,,,,,,,,S,BR-D01-ZOR-AZ-S,,shopify,deny,manual,48.00,TRUE,TRUE,,,
+camiseta-zorros-azul,Camiseta Zorros — Azul marino,"<p>Manga corta con lavado vintage y corte amplio de hombro caído. Costuras curvas en el delantero, estampado de los tres zorros en efecto craquelado y bajo con capa de camuflaje que asoma por debajo.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta,"Drop 01, Camisetas, Zorros",TRUE,Talla,S,BR-D01-ZOR-AZ-S,,shopify,deny,manual,48.00,TRUE,TRUE,,,draft
 camiseta-zorros-azul,,,,,,,,M,BR-D01-ZOR-AZ-M,,shopify,deny,manual,48.00,TRUE,TRUE,,,
 camiseta-zorros-azul,,,,,,,,L,BR-D01-ZOR-AZ-L,,shopify,deny,manual,48.00,TRUE,TRUE,,,
 camiseta-zorros-azul,,,,,,,,XL,BR-D01-ZOR-AZ-XL,,shopify,deny,manual,48.00,TRUE,TRUE,,,
-camiseta-zorros-gris,Camiseta Zorros — Gris,"<p>Manga corta con lavado vintage y corte amplio de hombro caído. Costuras curvas en el delantero, estampado de los tres zorros en efecto craquelado y bajo con capa de camuflaje que asoma por debajo.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta,"Drop 01, Camisetas, Zorros",TRUE,Talla,XS,BR-D01-ZOR-GR-XS,,shopify,deny,manual,48.00,TRUE,TRUE,,,draft
-camiseta-zorros-gris,,,,,,,,S,BR-D01-ZOR-GR-S,,shopify,deny,manual,48.00,TRUE,TRUE,,,
+camiseta-zorros-gris,Camiseta Zorros — Gris,"<p>Manga corta con lavado vintage y corte amplio de hombro caído. Costuras curvas en el delantero, estampado de los tres zorros en efecto craquelado y bajo con capa de camuflaje que asoma por debajo.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta,"Drop 01, Camisetas, Zorros",TRUE,Talla,S,BR-D01-ZOR-GR-S,,shopify,deny,manual,48.00,TRUE,TRUE,,,draft
 camiseta-zorros-gris,,,,,,,,M,BR-D01-ZOR-GR-M,,shopify,deny,manual,48.00,TRUE,TRUE,,,
 camiseta-zorros-gris,,,,,,,,L,BR-D01-ZOR-GR-L,,shopify,deny,manual,48.00,TRUE,TRUE,,,
 camiseta-zorros-gris,,,,,,,,XL,BR-D01-ZOR-GR-XL,,shopify,deny,manual,48.00,TRUE,TRUE,,,
-camiseta-zorros-verde,Camiseta Zorros — Verde,"<p>Manga corta con lavado vintage y corte amplio de hombro caído. Costuras curvas en el delantero y estampado de los tres zorros en efecto craquelado, a tono con la prenda.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta,"Drop 01, Camisetas, Zorros",TRUE,Talla,XS,BR-D01-ZOR-VE-XS,,shopify,deny,manual,48.00,TRUE,TRUE,,,draft
-camiseta-zorros-verde,,,,,,,,S,BR-D01-ZOR-VE-S,,shopify,deny,manual,48.00,TRUE,TRUE,,,
+camiseta-zorros-verde,Camiseta Zorros — Verde,"<p>Manga corta con lavado vintage y corte amplio de hombro caído. Costuras curvas en el delantero y estampado de los tres zorros en efecto craquelado, a tono con la prenda.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta,"Drop 01, Camisetas, Zorros",TRUE,Talla,S,BR-D01-ZOR-VE-S,,shopify,deny,manual,48.00,TRUE,TRUE,,,draft
 camiseta-zorros-verde,,,,,,,,M,BR-D01-ZOR-VE-M,,shopify,deny,manual,48.00,TRUE,TRUE,,,
 camiseta-zorros-verde,,,,,,,,L,BR-D01-ZOR-VE-L,,shopify,deny,manual,48.00,TRUE,TRUE,,,
 camiseta-zorros-verde,,,,,,,,XL,BR-D01-ZOR-VE-XL,,shopify,deny,manual,48.00,TRUE,TRUE,,,
-camiseta-manga-larga-cuadros,Camiseta Manga Larga Cuadros,"<p>Manga raglán en tejido de cuadros negro, beige y gris, con el cuerpo en blanco roto. Cuello y puños de canalé, logotipo pequeño bordado bajo el cuello.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta manga larga,"Drop 01, Manga larga",TRUE,Talla,XS,BR-D01-CAML-CUA-XS,,shopify,deny,manual,55.00,TRUE,TRUE,,,draft
-camiseta-manga-larga-cuadros,,,,,,,,S,BR-D01-CAML-CUA-S,,shopify,deny,manual,55.00,TRUE,TRUE,,,
+camiseta-manga-larga-cuadros,Camiseta Manga Larga Cuadros,"<p>Manga raglán en tejido de cuadros negro, beige y gris, con el cuerpo en blanco roto. Cuello y puños de canalé, logotipo pequeño bordado bajo el cuello.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Camiseta manga larga,"Drop 01, Manga larga",TRUE,Talla,S,BR-D01-CAML-CUA-S,,shopify,deny,manual,55.00,TRUE,TRUE,,,draft
 camiseta-manga-larga-cuadros,,,,,,,,M,BR-D01-CAML-CUA-M,,shopify,deny,manual,55.00,TRUE,TRUE,,,
 camiseta-manga-larga-cuadros,,,,,,,,L,BR-D01-CAML-CUA-L,,shopify,deny,manual,55.00,TRUE,TRUE,,,
 camiseta-manga-larga-cuadros,,,,,,,,XL,BR-D01-CAML-CUA-XL,,shopify,deny,manual,55.00,TRUE,TRUE,,,
-sudadera-union,Sudadera Union,"<p>Sudadera con capucha y cremallera completa en azul. Capucha con la bandera británica desgastada, estrellas en la manga, bolsillo canguro y logotipo en el pecho. Puños y bajo de canalé.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Sudadera,"Drop 01, Sudaderas",TRUE,Talla,XS,BR-D01-SUD-UNI-XS,,shopify,deny,manual,79.00,TRUE,TRUE,,,draft
-sudadera-union,,,,,,,,S,BR-D01-SUD-UNI-S,,shopify,deny,manual,79.00,TRUE,TRUE,,,
+sudadera-union,Sudadera Union,"<p>Sudadera con capucha y cremallera completa en azul. Capucha con la bandera británica desgastada, estrellas en la manga, bolsillo canguro y logotipo en el pecho. Puños y bajo de canalé.</p><p><strong>Tirada única — sin reposición.</strong></p>",BLANC RECORDS,Sudadera,"Drop 01, Sudaderas",TRUE,Talla,S,BR-D01-SUD-UNI-S,,shopify,deny,manual,79.00,TRUE,TRUE,,,draft
 sudadera-union,,,,,,,,M,BR-D01-SUD-UNI-M,,shopify,deny,manual,79.00,TRUE,TRUE,,,
 sudadera-union,,,,,,,,L,BR-D01-SUD-UNI-L,,shopify,deny,manual,79.00,TRUE,TRUE,,,
 sudadera-union,,,,,,,,XL,BR-D01-SUD-UNI-XL,,shopify,deny,manual,79.00,TRUE,TRUE,,,

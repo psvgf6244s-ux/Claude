@@ -12,10 +12,11 @@
         <summary class="up">{{ 'products.details' | t }}</summary>
         <div class="acc__body rte">{{ product.description }}</div>
       </details>
-      {%- if section.settings.size_chart_page != blank -%}
+      {%- capture guide -%}{% render 'size-guide', product: product %}{%- endcapture -%}
+      {%- if guide != blank or section.settings.size_chart_page != blank -%}
         <details>
           <summary class="up">{{ 'products.size_chart' | t }}</summary>
-          <div class="acc__body rte">{{ section.settings.size_chart_page.content }}</div>
+          <div class="acc__body rte">{%- if guide != blank -%}{{ guide }}{%- else -%}{{ section.settings.size_chart_page.content }}{%- endif -%}</div>
         </details>
       {%- endif -%}
       {%- if section.settings.shipping_page != blank -%}

@@ -1,0 +1,29 @@
+{%- comment -%}
+  Guía de tallas según el tipo de producto. Medidas del tech pack, en cm, prenda en plano.
+  Uso: {% render 'size-guide', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign type = product.type | downcase
+  if type contains 'manga larga'
+    assign cols = 'Pecho,Largo,Manga'
+    assign rows = 'S:58,64,69|M:60,66,71|L:62,68,72|XL:64,70,74'
+  elsif type contains 'sudadera'
+    assign cols = 'Pecho,Largo,Manga'
+    assign rows = 'S:62,57,73|M:64,59,75|L:66,61,77|XL:68,63,79'
+  elsif type contains 'camiseta'
+    assign cols = 'Pecho,Largo,Hombros'
+    assign rows = 'S:58,62,54|M:60,64,56|L:62,66,58|XL:64,68,60'
+  endif
+-%}
+{%- if rows -%}
+  {%- assign col_list = cols | split: ',' -%}
+  <table>
+    <tr><th>Talla</th>{% for c in col_list %}<th>{{ c }}</th>{% endfor %}</tr>
+    {%- assign row_list = rows | split: '|' -%}
+    {%- for r in row_list -%}
+      {%- assign parts = r | split: ':' -%}
+      <tr><td>{{ parts[0] }}</td>{% assign vals = parts[1] | split: ',' %}{% for v in vals %}<td>{{ v }}</td>{% endfor %}</tr>
+    {%- endfor -%}
+  </table>
+  <p>Medidas de la prenda en cm, tomadas en plano. Corte amplio: si dudas entre dos tallas, coge la tuya.</p>
+{%- endif -%}
