@@ -79,7 +79,11 @@ button,input,textarea,select{font:inherit;color:inherit}
 .acc summary::-webkit-details-marker{display:none}
 .acc summary::after{content:"+";font-size:16px;line-height:1}
 .acc details[open] summary::after{content:"–"}
-.sg-draw{display:block;width:100%;max-width:300px;height:auto;margin:6px auto 14px;color:var(--fg)}
+.sg-draw{display:block;width:100%;max-width:320px;height:auto;margin:4px auto 12px;color:var(--fg)}
+.sg-tabs{display:flex;gap:6px;justify-content:center;margin:4px 0 6px}
+.sg-tabs button{min-width:44px;min-height:36px;border:1px solid var(--line);background:var(--bg);font-weight:600;font-size:12px;cursor:pointer}
+.sg-tabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.sg tr.sel td{font-weight:700;color:var(--fg);background:#f4f4f4}
 .acc__body{padding:0 12px 14px;color:var(--dim);overflow-x:auto}
 .pdp__stage{display:grid;justify-items:center;gap:12px;min-width:0}
 .pdp__slides{position:relative;width:min(560px,100%)}
