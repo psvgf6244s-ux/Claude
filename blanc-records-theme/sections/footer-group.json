@@ -2,8 +2,15 @@
   "type": "footer",
   "name": "Pie de página",
   "sections": {
-    "newsletter": { "type": "newsletter", "settings": {} },
-    "footer": { "type": "footer", "settings": { "menu": "footer", "show_payment": true } }
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "show_payment": true,
+        "news_heading": "Suscríbete y entérate antes del próximo drop"
+      }
+    }
   },
-  "order": ["newsletter", "footer"]
+  "order": [
+    "footer"
+  ]
 }

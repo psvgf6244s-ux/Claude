@@ -24,7 +24,20 @@
     "menu": "Menú"
   },
   "footer": {
-    "cookies": "Preferencias de cookies"
+    "cookies": "Preferencias de cookies",
+    "info": "Info",
+    "legal": "Legal",
+    "contact": "Contacto",
+    "shipping": "Envíos",
+    "returns": "Devoluciones",
+    "make_return": "Hacer una devolución",
+    "terms": "Términos y condiciones",
+    "privacy": "Privacidad",
+    "cookies_policy": "Cookies",
+    "legal_notice": "Aviso legal",
+    "country": "País y moneda",
+    "language": "Idioma",
+    "payment": "Métodos de pago"
   },
   "products": {
     "from": "Desde",
