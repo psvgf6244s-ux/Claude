@@ -71,7 +71,8 @@
     "more_help": "¿Más dudas?",
     "see_faq": "Mira las preguntas frecuentes",
     "related": "También te puede gustar",
-    "zoom": "Ampliar foto"
+    "zoom": "Ampliar foto",
+    "zoom_hint": "Pasa el ratón o toca para ampliar"
   },
   "collections": {
     "view_all": "Ver todo",
@@ -125,7 +126,7 @@
   "sheet": {
     "added": "Añadido",
     "close": "Cerrar carrito",
-    "complete_look": "Completa el look",
+    "complete_look": "Te puede interesar",
     "keep": "Seguir comprando",
     "size": "Talla",
     "remove_one": "Quitar una",
@@ -133,7 +134,14 @@
     "add_size": "Añadir en talla",
     "taxes_shipping": "IVA incluido. Envío calculado al pagar.",
     "legal_html": "Al tramitar el pedido aceptas las <a href=\"{{ terms }}\">condiciones de venta</a> y la <a href=\"{{ privacy }}\">política de privacidad</a>.",
-    "your_order": "Tu pedido"
+    "your_order": "Tu pedido",
+    "remove": "Eliminar",
+    "removed": "Has quitado {{ name }}.",
+    "undo": "Deshacer",
+    "see_all": "Ver el Drop 01",
+    "trust_pay": "Pago seguro",
+    "trust_returns": "Devoluciones 14 días",
+    "trust_ship": "Envío desde Pamplona"
   },
   "returns": {
     "order": "Número de pedido",
@@ -173,7 +181,23 @@
     "ff_less": "__N__ cm menos que tu prenda",
     "ff_small": "Tu prenda es más estrecha que nuestra S (__C__ cm): la S te quedará más holgada.",
     "ff_big": "Tu prenda es más ancha que nuestra XL (__C__ cm): la XL te quedará más ajustada.",
-    "ff_pick": "Elegir talla __Z__"
+    "ff_pick": "Elegir talla __Z__",
+    "tab_hw": "Altura y peso",
+    "tab_ch": "Medir una prenda tuya",
+    "height": "Altura (cm)",
+    "weight": "Peso (kg)",
+    "fit_q": "¿Cómo te gusta que te quede?",
+    "fit_tight": "Más ajustada",
+    "fit_regular": "Como está pensada (amplia)",
+    "fit_loose": "Más holgada",
+    "calc": "Calcular mi talla",
+    "bad_hw": "Escribe tu altura (140–210 cm) y tu peso (40–150 kg).",
+    "rec": "Te recomendamos la <strong>__Z__</strong> para __H__ cm y __W__ kg.",
+    "split": "Por altura serías __A__ y por peso __B__: hemos elegido la mayor para que no te quede justa.",
+    "note_est": "Es una estimación orientativa. Si tienes una prenda parecida, compárala con la tabla de medidas.",
+    "your": "Tu talla recomendada:",
+    "change": "Cambiar",
+    "which": "¿Qué talla soy?"
   },
   "announcement": {
     "messages": "Drop 01 ya disponible|Tirada única · Sin reposición|Envíos desde Pamplona|Devoluciones en 14 días",

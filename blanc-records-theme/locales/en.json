@@ -71,7 +71,8 @@
     "more_help": "More questions?",
     "see_faq": "Read the FAQ",
     "related": "You may also like",
-    "zoom": "Zoom photo"
+    "zoom": "Zoom photo",
+    "zoom_hint": "Pasa el ratón o toca para ampliar"
   },
   "collections": {
     "view_all": "View all",
@@ -125,7 +126,7 @@
   "sheet": {
     "added": "Added",
     "close": "Close bag",
-    "complete_look": "Complete the look",
+    "complete_look": "You may also like",
     "keep": "Keep shopping",
     "size": "Size",
     "remove_one": "Remove one",
@@ -133,7 +134,14 @@
     "add_size": "Add in size",
     "taxes_shipping": "VAT included. Shipping calculated at checkout.",
     "legal_html": "By checking out you accept the <a href=\"{{ terms }}\">terms of sale</a> and the <a href=\"{{ privacy }}\">privacy policy</a>.",
-    "your_order": "Your order"
+    "your_order": "Your order",
+    "remove": "Remove",
+    "removed": "{{ name }} removed.",
+    "undo": "Undo",
+    "see_all": "Shop Drop 01",
+    "trust_pay": "Secure payment",
+    "trust_returns": "14-day returns",
+    "trust_ship": "Shipped from Pamplona"
   },
   "returns": {
     "order": "Order number",
@@ -173,7 +181,23 @@
     "ff_less": "__N__ cm less than your piece",
     "ff_small": "Your piece is narrower than our S (__C__ cm): the S will feel roomier.",
     "ff_big": "Your piece is wider than our XL (__C__ cm): the XL will feel more fitted.",
-    "ff_pick": "Choose size __Z__"
+    "ff_pick": "Choose size __Z__",
+    "tab_hw": "Height & weight",
+    "tab_ch": "Measure a piece you own",
+    "height": "Height (cm)",
+    "weight": "Weight (kg)",
+    "fit_q": "How do you like it to fit?",
+    "fit_tight": "More fitted",
+    "fit_regular": "As designed (relaxed)",
+    "fit_loose": "Looser",
+    "calc": "Find my size",
+    "bad_hw": "Enter your height (140–210 cm) and weight (40–150 kg).",
+    "rec": "We recommend <strong>__Z__</strong> for __H__ cm and __W__ kg.",
+    "split": "Your height suggests __A__ and your weight __B__: we picked the larger so it is not tight.",
+    "note_est": "This is an estimate. If you have a similar piece, compare it with the measurement table.",
+    "your": "Your recommended size:",
+    "change": "Change",
+    "which": "What is my size?"
   },
   "announcement": {
     "messages": "Drop 01 out now|One run only · No restocks|Shipped from Pamplona|14-day returns",
