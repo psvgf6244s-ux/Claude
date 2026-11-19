@@ -1,0 +1,19 @@
+{%- liquid
+  assign raw = section.settings.messages
+  if raw == blank
+    assign raw = 'announcement.messages' | t
+  endif
+  assign list = raw | split: '|'
+-%}
+<div class="ann gut" role="region" aria-label="{{ 'announcement.label' | t }}">
+  <p aria-live="polite" data-ann='[{%- for m in list -%}{{ m | strip | json | escape }}{% unless forloop.last %},{% endunless %}{%- endfor -%}]'>{{ list.first | strip | escape }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Barra de avisos",
+  "settings": [
+    { "type": "text", "id": "messages", "label": "Mensajes separados por | (vacío = mensajes traducidos)" }
+  ]
+}
+{% endschema %}

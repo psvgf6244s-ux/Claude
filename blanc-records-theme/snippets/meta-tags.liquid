@@ -2,7 +2,10 @@
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = page_description | default: shop.description
+  if og_description == blank
+    assign og_description = 'general.meta_description' | t
+  endif
   if request.page_type == 'product'
     assign og_type = 'product'
   endif
@@ -15,6 +18,10 @@
 {%- if page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url: width: 1200 }}">
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url: width: 1200 }}">
+{%- else -%}
+  <meta property="og:image" content="https:{{ 'share.jpg' | asset_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 {%- endif -%}
 {%- if request.page_type == 'product' -%}
   <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html | escape }}">

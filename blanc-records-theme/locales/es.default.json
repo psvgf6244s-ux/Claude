@@ -7,7 +7,8 @@
     "password_text": "La tienda abre con el próximo drop. Déjanos tu email y te avisamos.",
     "password_enter": "Entrar con contraseña",
     "password_label": "Contraseña",
-    "password_submit": "Entrar"
+    "password_submit": "Entrar",
+    "meta_description": "BLANC RECORDS: ropa en tiradas únicas. Drop 01 con camisetas, manga larga y sudadera. Envíos desde Pamplona."
   },
   "accessibility": {
     "skip": "Saltar al contenido",
@@ -38,7 +39,9 @@
     "country": "País y moneda",
     "language": "Idioma",
     "payment": "Métodos de pago",
-    "news_heading": "Suscríbete y entérate antes del próximo drop"
+    "news_heading": "Suscríbete y entérate antes del próximo drop",
+    "faq": "Preguntas frecuentes",
+    "about": "Sobre BLANC"
   },
   "products": {
     "from": "Desde",
@@ -58,7 +61,16 @@
     "quick_add": "Añadir rápido",
     "low_stock": "Quedan pocas en talla {{ size }}",
     "last_one": "Última unidad en talla {{ size }}",
-    "choose_size": "Elige talla"
+    "choose_size": "Elige talla",
+    "catalog": "Catálogo",
+    "fit_note": "Corte amplio y hombro caído. Si dudas entre dos tallas, coge la tuya.",
+    "care": "Material y cuidado",
+    "care_body": "Lava del revés a 30 °C con colores parecidos. Sin secadora. Plancha del revés y sin pasar por el estampado. Por el lavado vintage, los primeros lavados pueden soltar algo de color. Sigue siempre la etiqueta de la prenda.",
+    "shipping_body": "Envío desde Pamplona. Tienes 14 días para devolver tu pedido.",
+    "secure_payment": "Pago seguro",
+    "more_help": "¿Más dudas?",
+    "see_faq": "Mira las preguntas frecuentes",
+    "related": "También te puede gustar"
   },
   "collections": {
     "view_all": "Ver todo",
@@ -148,5 +160,9 @@
     "shoulders": "Hombros",
     "sleeve": "Manga",
     "note": "Medidas de la prenda en cm, con la prenda estirada en plano. Corte amplio: si dudas entre dos tallas, coge la tuya."
+  },
+  "announcement": {
+    "messages": "Drop 01 ya disponible|Tirada única · Sin reposición|Envíos desde Pamplona|Devoluciones en 14 días",
+    "label": "Avisos"
   }
 }

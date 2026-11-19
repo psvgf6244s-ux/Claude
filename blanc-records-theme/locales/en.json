@@ -7,7 +7,8 @@
     "password_text": "The store opens with the next drop. Leave your email and we will let you know.",
     "password_enter": "Enter with password",
     "password_label": "Password",
-    "password_submit": "Enter"
+    "password_submit": "Enter",
+    "meta_description": "BLANC RECORDS: ropa en tiradas únicas. Drop 01 con camisetas, manga larga y sudadera. Envíos desde Pamplona."
   },
   "accessibility": {
     "skip": "Skip to content",
@@ -38,7 +39,9 @@
     "country": "Country and currency",
     "language": "Language",
     "payment": "Payment methods",
-    "news_heading": "Subscribe and hear about the next drop first"
+    "news_heading": "Subscribe and hear about the next drop first",
+    "faq": "Preguntas frecuentes",
+    "about": "Sobre BLANC"
   },
   "products": {
     "from": "From",
@@ -58,7 +61,16 @@
     "quick_add": "Quick add",
     "low_stock": "Only a few left in size {{ size }}",
     "last_one": "Last one in size {{ size }}",
-    "choose_size": "Choose a size"
+    "choose_size": "Choose a size",
+    "catalog": "Shop",
+    "fit_note": "Relaxed fit with a dropped shoulder. If you are between two sizes, take your usual one.",
+    "care": "Material & care",
+    "care_body": "Wash inside out at 30 °C with similar colours. Do not tumble dry. Iron inside out and avoid the print. Because of the vintage wash, the first washes may release some colour. Always follow the garment label.",
+    "shipping_body": "Shipped from Pamplona, Spain. You have 14 days to return your order.",
+    "secure_payment": "Secure payment",
+    "more_help": "More questions?",
+    "see_faq": "Read the FAQ",
+    "related": "You may also like"
   },
   "collections": {
     "view_all": "View all",
@@ -148,5 +160,9 @@
     "shoulders": "Shoulders",
     "sleeve": "Sleeve",
     "note": "Garment measurements in cm, laid flat. Relaxed fit: if you are between two sizes, take your usual one."
+  },
+  "announcement": {
+    "messages": "Drop 01 out now|One run only · No restocks|Shipped from Pamplona|14-day returns",
+    "label": "Announcements"
   }
 }

@@ -169,6 +169,24 @@
     });
   }
 
+  // Abrir la guía de tallas desde el enlace junto a las tallas
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-open-guide]')) return;
+    var d = document.querySelector('[data-guide-acc]');
+    if (d) { d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+
+  // Barra de avisos: los mensajes van rotando
+  document.querySelectorAll('[data-ann]').forEach(function (el) {
+    var list = JSON.parse(el.getAttribute('data-ann'));
+    if (list.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    setInterval(function () {
+      el.classList.add('fade');
+      setTimeout(function () { i = (i + 1) % list.length; el.textContent = list[i]; el.classList.remove('fade'); }, 350);
+    }, 3800);
+  });
+
   // Entrada de la portada: el título aparece letra a letra
   document.querySelectorAll('[data-split]').forEach(function (h) {
     var txt = h.textContent.trim(); if (!txt) return;
