@@ -37,7 +37,8 @@
     "legal_notice": "Aviso legal",
     "country": "País y moneda",
     "language": "Idioma",
-    "payment": "Métodos de pago"
+    "payment": "Métodos de pago",
+    "news_heading": "Suscríbete y entérate antes del próximo drop"
   },
   "products": {
     "from": "Desde",
@@ -53,7 +54,11 @@
     "read_more": "Leer completo",
     "gallery": "Fotos del producto",
     "image_n": "Foto {{ n }}",
-    "example": "Producto de ejemplo"
+    "example": "Producto de ejemplo",
+    "quick_add": "Añadir rápido",
+    "low_stock": "Quedan pocas en talla {{ size }}",
+    "last_one": "Última unidad en talla {{ size }}",
+    "choose_size": "Elige talla"
   },
   "collections": {
     "view_all": "Ver todo",
@@ -127,5 +132,21 @@
     "comments": "Comentarios (opcional)",
     "send": "Solicitar devolución",
     "success": "Solicitud recibida. En 24–48 h te escribimos con la dirección y los pasos para el envío."
+  },
+  "home": {
+    "kicker": "Drop 01 ya disponible",
+    "shop": "Comprar",
+    "drop_heading": "Drop 01",
+    "drop_sub": "Camisetas, manga larga y sudadera. Tirada única, sin reposición. Envíos desde Pamplona.",
+    "marquee": "Drop 01 · Tirada única · Sin reposición · Envíos desde Pamplona"
+  },
+  "size_guide": {
+    "how": "Cómo se mide la prenda",
+    "size": "Talla",
+    "chest": "Pecho",
+    "length": "Largo",
+    "shoulders": "Hombros",
+    "sleeve": "Manga",
+    "note": "Medidas de la prenda en cm, con la prenda estirada en plano. Corte amplio: si dudas entre dos tallas, coge la tuya."
   }
 }

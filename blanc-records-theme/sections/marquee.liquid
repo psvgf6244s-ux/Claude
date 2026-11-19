@@ -1,0 +1,27 @@
+{%- liquid
+  assign text = section.settings.text
+  if text == blank
+    assign text = 'home.marquee' | t
+  endif
+  assign parts = text | split: ' · '
+-%}
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    {%- for i in (1..8) -%}
+      <span>
+        {%- for p in parts -%}{{ p | escape }}{% unless forloop.last %} <i>·</i> {% endunless %}{%- endfor -%}
+        {% render 'logo-mark' %}
+      </span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cinta en movimiento",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Texto (separa con « · »; vacío = texto traducido)" }
+  ],
+  "presets": [{ "name": "Cinta en movimiento" }]
+}
+{% endschema %}

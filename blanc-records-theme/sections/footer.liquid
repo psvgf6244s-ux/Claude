@@ -29,7 +29,7 @@
     </div>
 
     <div class="f-col f-news">
-      <p class="f-h">{{ section.settings.news_heading | escape }}</p>
+      <p class="f-h">{%- if section.settings.news_heading != blank -%}{{ section.settings.news_heading | escape }}{%- else -%}{{ 'footer.news_heading' | t }}{%- endif -%}</p>
       {%- form 'customer', id: 'footer-newsletter' -%}
         <input type="hidden" name="contact[tags]" value="newsletter">
         {%- if form.posted_successfully? -%}
@@ -87,7 +87,7 @@
   "settings": [
     { "type": "link_list", "id": "menu_info", "label": "Menú «Info» (vacío = Contacto, Envíos, Devoluciones)" },
     { "type": "link_list", "id": "menu_legal", "label": "Menú «Legal» (vacío = políticas de la tienda)" },
-    { "type": "text", "id": "news_heading", "label": "Título de la suscripción", "default": "Suscríbete y entérate antes del próximo drop" },
+    { "type": "text", "id": "news_heading", "label": "Título de la suscripción (vacío = texto traducido)" },
     { "type": "checkbox", "id": "show_payment", "label": "Mostrar métodos de pago", "default": true }
   ]
 }

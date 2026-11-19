@@ -1,7 +1,17 @@
 {%- assign col = section.settings.collection | default: collections.all -%}
-<section class="arrivals gut">
-  {%- if section.settings.heading != blank -%}<h2 class="h-up">{{ section.settings.heading | escape }}</h2>{%- endif -%}
-  {%- if section.settings.subheading != blank -%}<p class="sub">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'home.drop_heading' | t
+  endif
+  assign subheading = section.settings.subheading
+  if subheading == blank
+    assign subheading = 'home.drop_sub' | t
+  endif
+-%}
+<section class="arrivals gut" id="catalogo">
+  <h2 class="h-up">{{ heading | escape }}</h2>
+  <p class="sub">{{ subheading | escape }}</p>
   <div class="grid" style="--cols: {{ section.settings.columns }};">
     {%- for product in col.products limit: section.settings.limit -%}
       {% render 'product-card', product: product %}
@@ -20,8 +30,8 @@
 {
   "name": "Colección destacada",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Título", "default": "Novedades" },
-    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Camisetas, manga larga y sudadera. Tirada única, sin reposición. Envíos desde Pamplona." },
+    { "type": "text", "id": "heading", "label": "Título (vacío = «Drop 01» traducido)" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo (vacío = texto traducido)" },
     { "type": "collection", "id": "collection", "label": "Colección" },
     { "type": "range", "id": "limit", "label": "Productos", "min": 2, "max": 16, "step": 1, "default": 8 },
     { "type": "range", "id": "columns", "label": "Columnas en ordenador", "min": 2, "max": 5, "step": 1, "default": 4 },

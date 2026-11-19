@@ -1,4 +1,12 @@
 {%- liquid
+  assign kicker = section.settings.kicker
+  if kicker == blank
+    assign kicker = 'home.kicker' | t
+  endif
+  assign btn = section.settings.button_label
+  if btn == blank
+    assign btn = 'home.shop' | t
+  endif
   assign focal = '52% 50%'
   if section.settings.image != blank and section.settings.image.presentation.focal_point != blank
     assign focal = section.settings.image.presentation.focal_point
@@ -18,17 +26,15 @@
     <img class="hero__media" src="{{ 'hero.jpg' | asset_url }}" alt="Modelo con ropa beige sujetando una bandera azul marino con el logo de BLANC RECORDS en un paisaje volcánico" fetchpriority="high" width="3344" height="1882">
   {%- endif -%}
   {%- if section.settings.show_title -%}
-    <h1 class="hero__title">
+    <h1 class="hero__title" data-split>
       {%- if section.settings.title != blank -%}{{ section.settings.title | escape }}{%- else -%}{% render 'wordmark' %}{%- endif -%}
     </h1>
   {%- else -%}
     <h1 class="visually-hidden">{{ shop.name | escape }}</h1>
   {%- endif -%}
   <div class="hero__cta gut">
-    {%- if section.settings.kicker != blank -%}<span class="up">{{ section.settings.kicker | escape }}</span>{%- endif -%}
-    {%- if section.settings.button_label != blank -%}
-      <a class="btn btn--light" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }}</a>
-    {%- endif -%}
+    <span class="up">{{ kicker | escape }}</span>
+    <a class="btn btn--light" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ btn | escape }}</a>
   </div>
 </section>
 
@@ -41,8 +47,8 @@
     { "type": "checkbox", "id": "show_title", "label": "Mostrar el nombre en grande encima de la foto", "default": true },
     { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca)", "default": "BLANC RECORDS" },
     { "type": "checkbox", "id": "overlay", "label": "Oscurecer un poco la parte de abajo (mejora la lectura del botón)", "default": true },
-    { "type": "text", "id": "kicker", "label": "Texto pequeño", "default": "Drop 01 ya disponible" },
-    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Comprar" },
+    { "type": "text", "id": "kicker", "label": "Texto pequeño (vacío = texto traducido «Drop 01 ya disponible»)" },
+    { "type": "text", "id": "button_label", "label": "Texto del botón (vacío = «Comprar» traducido)" },
     { "type": "url", "id": "button_link", "label": "Enlace del botón" },
     { "type": "range", "id": "height", "label": "Alto", "min": 50, "max": 100, "step": 5, "unit": "vh", "default": 100 }
   ],

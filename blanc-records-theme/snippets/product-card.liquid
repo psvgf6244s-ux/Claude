@@ -1,33 +1,42 @@
 {%- comment -%}
-  Tarjeta de producto. Uso: {% render 'product-card', product: product %}
+  Tarjeta de producto con «añadir rápido» por talla (en ordenador, al pasar el ratón).
+  Uso: {% render 'product-card', product: product %}
 {%- endcomment -%}
-<a class="card" href="{{ product.url }}">
-  <div class="card__media">
-    {%- if product.featured_media -%}
-      {{ product.featured_media | image_url: width: 900 | image_tag:
-        loading: 'lazy',
-        widths: '300, 450, 600, 900',
-        sizes: '(min-width: 900px) 25vw, 50vw',
-        alt: product.featured_media.alt | default: product.title,
-        class: 'card__img' }}
-      {%- if product.media[1] -%}
-        {{ product.media[1] | image_url: width: 900 | image_tag:
+<div class="card">
+  <div class="card__mw">
+    <a class="card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 900 | image_tag:
           loading: 'lazy',
           widths: '300, 450, 600, 900',
-          sizes: '(min-width: 900px) 25vw, 50vw',
+          sizes: '(min-width: 900px) 20vw, 50vw',
           alt: '',
-          class: 'card__img card__img--alt' }}
+          class: 'card__img' }}
+        {%- if product.media[1] -%}
+          {{ product.media[1] | image_url: width: 900 | image_tag:
+            loading: 'lazy',
+            widths: '300, 450, 600, 900',
+            sizes: '(min-width: 900px) 20vw, 50vw',
+            alt: '',
+            class: 'card__img card__img--alt' }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'apparel-1' | placeholder_svg_tag: 'placeholder' }}
       {%- endif -%}
-    {%- else -%}
-      {{ 'apparel-1' | placeholder_svg_tag: 'placeholder' }}
+      {%- unless product.available -%}<span class="badge-so">{{ 'products.sold_out' | t }}</span>{%- endunless -%}
+    </a>
+    {%- if product.available and product.options.size == 1 and product.has_only_default_variant == false -%}
+      <div class="qa" role="group" aria-label="{{ 'products.quick_add' | t }}: {{ product.title | escape }}">
+        {%- for v in product.variants -%}
+          <button type="button" data-qa-variant="{{ v.id }}"{% unless v.available %} disabled{% endunless %} aria-label="{{ 'sheet.add_size' | t }} {{ v.title | escape }}: {{ product.title | escape }}">{{ v.title | escape }}</button>
+        {%- endfor -%}
+      </div>
+      <span class="qa-l" aria-hidden="true">{{ 'products.quick_add' | t }}</span>
     {%- endif -%}
-    {%- unless product.available -%}<span class="badge">{{ 'products.sold_out' | t }}</span>{%- endunless -%}
   </div>
-  <span class="card__title">{{ product.title | escape }}</span>
+  <a class="card__title" href="{{ product.url }}">{{ product.title | escape }}</a>
   <span class="card__price">
-    {%- if product.compare_at_price > product.price -%}
-      <s>{{ product.compare_at_price | money }}</s>
-    {%- endif -%}
+    {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s> {% endif -%}
     {%- if product.price_varies -%}{{ 'products.from' | t }} {% endif -%}{{ product.price | money }}
   </span>
-</a>
+</div>

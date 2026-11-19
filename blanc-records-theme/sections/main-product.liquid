@@ -88,6 +88,17 @@
       <button type="submit" name="add" class="btn btn--block" data-add{% unless current.available %} disabled{% endunless %}>
         <span data-add-label>{%- if current.available -%}{{ 'products.add_to_cart' | t }} — {{ current.price | money }}{%- else -%}{{ 'products.sold_out' | t }}{%- endif -%}</span>
       </button>
+      {%- liquid
+        assign low_text = ''
+        if current.inventory_management == 'shopify' and current.inventory_policy == 'deny' and current.inventory_quantity > 0 and current.inventory_quantity <= section.settings.low_stock
+          if current.inventory_quantity == 1
+            assign low_text = 'products.last_one' | t: size: current.title
+          else
+            assign low_text = 'products.low_stock' | t: size: current.title
+          endif
+        endif
+      -%}
+      <p class="low" data-low{% if low_text == blank %} hidden{% endif %}>{{ low_text }}</p>
       <p class="note" role="status" data-status></p>
       {{ form | payment_terms }}
     {%- endform -%}
@@ -96,9 +107,19 @@
   <script type="application/json" data-variants>
     {{ product.variants | json }}
   </script>
-  <script type="application/json" data-strings>
-    {"add": {{ 'products.add_to_cart' | t | json }}, "soldOut": {{ 'products.sold_out' | t | json }}, "unavailable": {{ 'products.unavailable' | t | json }}, "added": {{ 'products.added' | t | json }}, "error": {{ 'products.error' | t | json }}, "moneyFormat": {{ shop.money_format | json }}}
+  <script type="application/json" data-stock>
+    {%- capture stock -%}{%- for v in product.variants -%}{%- if v.inventory_management == 'shopify' and v.inventory_policy == 'deny' -%}"{{ v.id }}":{{ v.inventory_quantity }},{%- endif -%}{%- endfor -%}{%- endcapture -%}
+    {"limit":{{ section.settings.low_stock }},"qty":{ {{ stock | remove_last: ',' }} }}
   </script>
+  <script type="application/json" data-strings>
+    {"low": {{ 'products.low_stock' | t: size: '__S__' | json }}, "last": {{ 'products.last_one' | t: size: '__S__' | json }}, "choose": {{ 'products.choose_size' | t | json }}, "add": {{ 'products.add_to_cart' | t | json }}, "soldOut": {{ 'products.sold_out' | t | json }}, "unavailable": {{ 'products.unavailable' | t | json }}, "added": {{ 'products.added' | t | json }}, "error": {{ 'products.error' | t | json }}, "moneyFormat": {{ shop.money_format | json }}}
+  </script>
+
+  <div class="sticky-buy" data-sticky-buy hidden>
+    {%- if product.featured_media -%}{{ product.featured_media | image_url: width: 120 | image_tag: alt: '', width: 40, height: 50 }}{%- endif -%}
+    <div class="sb-info"><span class="sb-n">{{ product.title | escape }}</span><span class="sb-p" data-sb-price>{{ current.price | money }}</span></div>
+    <button class="btn" type="button" data-sb-btn>{{ 'products.add_to_cart' | t }}</button>
+  </div>
 </section>
 
 <script type="application/ld+json">
@@ -123,7 +144,8 @@
   "name": "Ficha de producto",
   "settings": [
     { "type": "page", "id": "size_chart_page", "label": "Página con la guía de tallas" },
-    { "type": "page", "id": "shipping_page", "label": "Página de envíos y devoluciones" }
+    { "type": "page", "id": "shipping_page", "label": "Página de envíos y devoluciones" },
+    { "type": "range", "id": "low_stock", "label": "Avisar «quedan pocas» con este stock o menos", "min": 1, "max": 10, "step": 1, "default": 3 }
   ]
 }
 {% endschema %}

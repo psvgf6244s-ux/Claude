@@ -1,0 +1,152 @@
+{
+  "general": {
+    "page": "Page {{ page }}",
+    "pagination": "Pagination",
+    "404": "This page does not exist or is no longer available.",
+    "password_title": "Coming soon",
+    "password_text": "The store opens with the next drop. Leave your email and we will let you know.",
+    "password_enter": "Enter with password",
+    "password_label": "Password",
+    "password_submit": "Enter"
+  },
+  "accessibility": {
+    "skip": "Skip to content",
+    "main_nav": "Main",
+    "legal_nav": "Legal information"
+  },
+  "header": {
+    "search": "Search",
+    "account": "Account",
+    "cart": "Bag",
+    "home": "go to home page",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "menu": "Menu"
+  },
+  "footer": {
+    "cookies": "Cookie preferences",
+    "info": "Info",
+    "legal": "Legal",
+    "contact": "Contact",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "make_return": "Start a return",
+    "terms": "Terms & conditions",
+    "privacy": "Privacy",
+    "cookies_policy": "Cookies",
+    "legal_notice": "Legal notice",
+    "country": "Country and currency",
+    "language": "Language",
+    "payment": "Payment methods",
+    "news_heading": "Subscribe and hear about the next drop first"
+  },
+  "products": {
+    "from": "From",
+    "sold_out": "Sold out",
+    "unavailable": "Unavailable",
+    "add_to_cart": "Add to bag",
+    "added": "Added to bag.",
+    "error": "Could not add it. Please try again.",
+    "tax_included": "VAT included. Shipping calculated at checkout.",
+    "details": "Details",
+    "size_chart": "Size guide",
+    "shipping_returns": "Shipping & returns",
+    "read_more": "Read in full",
+    "gallery": "Product photos",
+    "image_n": "Photo {{ n }}",
+    "example": "Example product",
+    "quick_add": "Quick add",
+    "low_stock": "Only a few left in size {{ size }}",
+    "last_one": "Last one in size {{ size }}",
+    "choose_size": "Choose a size"
+  },
+  "collections": {
+    "view_all": "View all",
+    "empty": "There are no products in this collection yet.",
+    "all_title": "Collections",
+    "count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    }
+  },
+  "cart": {
+    "title": "Bag",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "taxes_included_shipping": "VAT included. Shipping is calculated at checkout, before you confirm.",
+    "taxes_shipping": "Taxes and shipping calculated at checkout.",
+    "accept_terms_html": "I have read and accept the <a href=\"{{ terms }}\">terms of sale</a> and the <a href=\"{{ privacy }}\">privacy policy</a>.",
+    "accept_terms_required": "Tick the terms of sale box to continue.",
+    "update": "Update",
+    "checkout": "Checkout",
+    "empty": "Your bag is empty.",
+    "continue": "Shop products"
+  },
+  "newsletter": {
+    "email": "Your email",
+    "subscribe": "Subscribe",
+    "success": "You are in. We will tell you before the next drop.",
+    "legal_html": "By subscribing you agree to receive marketing emails from BLANC RECORDS. You can unsubscribe at any time from the link in every email. More information in the <a href=\"{{ privacy }}\">privacy policy</a>."
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "order": "Order number (if you have one)",
+    "message": "Message",
+    "send": "Send",
+    "success": "Message sent. We reply within 24–48 working hours.",
+    "privacy_html": "I have read and accept the <a href=\"{{ privacy }}\">privacy policy</a>.",
+    "info_basic_html": "Controller: BLANC RECORDS. Purpose: answering your message. Legal basis: your consent. Recipients: Shopify as the store provider; no data is shared with third parties unless required by law. Rights: access, rectification, erasure and more, as explained in the <a href=\"{{ privacy }}\">privacy policy</a>."
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Hoodie, tee…",
+    "submit": "Search",
+    "count": {
+      "one": "{{ count }} result for “{{ terms }}”",
+      "other": "{{ count }} results for “{{ terms }}”"
+    }
+  },
+  "sheet": {
+    "added": "Added",
+    "close": "Close bag",
+    "complete_look": "Complete the look",
+    "keep": "Keep shopping",
+    "size": "Size",
+    "remove_one": "Remove one",
+    "add_one": "Add one",
+    "add_size": "Add in size",
+    "taxes_shipping": "VAT included. Shipping calculated at checkout.",
+    "legal_html": "By checking out you accept the <a href=\"{{ terms }}\">terms of sale</a> and the <a href=\"{{ privacy }}\">privacy policy</a>.",
+    "your_order": "Your order"
+  },
+  "returns": {
+    "order": "Order number",
+    "email": "Order email",
+    "items": "Items you are returning (and size)",
+    "reason": "Reason",
+    "reason_withdraw": "Not for me (withdrawal)",
+    "reason_size": "I want another size",
+    "reason_defect": "It is faulty",
+    "comments": "Comments (optional)",
+    "send": "Request a return",
+    "success": "Request received. Within 24–48 hours we will email you the address and the steps."
+  },
+  "home": {
+    "kicker": "Drop 01 out now",
+    "shop": "Shop now",
+    "drop_heading": "Drop 01",
+    "drop_sub": "Tees, long sleeve and hoodie. One run only, no restocks. Shipped from Pamplona, Spain.",
+    "marquee": "Drop 01 · One run only · No restocks · Shipped from Pamplona"
+  },
+  "size_guide": {
+    "how": "How to measure the garment",
+    "size": "Size",
+    "chest": "Chest",
+    "length": "Length",
+    "shoulders": "Shoulders",
+    "sleeve": "Sleeve",
+    "note": "Garment measurements in cm, laid flat. Relaxed fit: if you are between two sizes, take your usual one."
+  }
+}

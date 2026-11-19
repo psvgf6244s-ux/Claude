@@ -5,8 +5,7 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "show_payment": true,
-        "news_heading": "Suscríbete y entérate antes del próximo drop"
+        "show_payment": true
       }
     }
   },

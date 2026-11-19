@@ -81,14 +81,15 @@ button,input,textarea,select{font:inherit;color:inherit}
 .grid{display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));gap:28px 16px}
 @media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card:last-child:nth-child(odd){grid-column:1/-1}.grid>.card:last-child:nth-child(odd) .card__media{aspect-ratio:4/3}}
 .card{display:grid;gap:8px;align-content:start}
-.card__media{position:relative;aspect-ratio:3/4;overflow:hidden;background:#fff}
+.card__mw{position:relative}
+.card__media{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#fff}
 .card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .35s}
 .card__img--alt{opacity:0}
 @media (hover:hover){.card:hover .card__img--alt{opacity:1}}
-.card__title{font-weight:600;text-transform:uppercase;font-size:11px}
+.card__title{font-weight:600;text-transform:uppercase;font-size:11px;color:inherit}
 .card__price{color:var(--dim);font-variant-numeric:tabular-nums}
 .card__price s{margin-right:6px}
-.badge{position:absolute;top:8px;left:8px;background:var(--fg);color:var(--bg);font-size:10px;text-transform:uppercase;font-weight:600;padding:3px 6px}
+.badge-so{position:absolute;top:8px;left:8px;z-index:1;background:var(--fg);color:var(--bg);font-size:10px;text-transform:uppercase;font-weight:600;padding:3px 6px}
 .more{margin-top:32px;text-align:center}
 .pager{margin-top:32px;display:flex;justify-content:center;gap:12px}
 .pager .current{font-weight:700}
@@ -278,4 +279,44 @@ button,input,textarea,select{font:inherit;color:inherit}
 .sheet-legal a{text-decoration:underline}
 .acts .btn[aria-disabled]{opacity:.4;pointer-events:none}
 .added[hidden]{display:none}
+
+/* entrada de la portada */
+.hero__media{animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes heroZoom{from{transform:scale(1.08)}}
+.hero__title .ch{display:inline-block;animation:chUp .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 45ms + 250ms)}
+.hero__title .sp{display:inline-block;width:.28em}
+@keyframes chUp{from{transform:translateY(.45em);opacity:0;filter:blur(6px)}}
+.hero__cta{animation:fadeUp .8s ease both;animation-delay:1s}
+@keyframes fadeUp{from{transform:translateY(12px);opacity:0}}
+/* cinta */
+.mq{overflow:hidden;background:#0a0a0a;color:#fff}
+.mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
+.mq-track span{display:inline-flex;align-items:center;gap:28px;padding:14px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.mq-track i{font-style:normal}
+.mq-track .logo-mark{height:14px}
+.mq:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* añadir rápido */
+.qa{position:absolute;left:8px;right:8px;bottom:8px;z-index:2;display:flex;gap:4px;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none}
+.qa button{flex:1;min-width:0;min-height:38px;background:rgba(255,255,255,.94);border:1px solid #0a0a0a;color:#0a0a0a;font:inherit;font-size:11px;font-weight:700;cursor:pointer}
+.qa button:hover{background:#0a0a0a;color:#fff}
+.qa button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.qa button.ok{background:#1d6b35;border-color:#1d6b35;color:#fff}
+.qa-l{position:absolute;left:8px;bottom:52px;z-index:2;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:0;transition:opacity .25s;pointer-events:none;background:#fff;padding:2px 6px}
+@media (hover:hover){.card__mw:hover .qa,.card__mw:focus-within .qa{opacity:1;transform:none;pointer-events:auto}.card__mw:hover .qa-l{opacity:1}}
+@media (hover:none){.qa,.qa-l{display:none}}
+/* quedan pocas */
+.low{margin:0;font-size:12px;font-weight:600;color:#b04a00;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.low::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.6s ease infinite}
+@keyframes pulse{50%{opacity:.3}}
+/* barra de compra fija (móvil) */
+.sticky-buy{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--bg);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-shadow:0 -8px 24px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease}
+.sticky-buy.show{transform:none}
+.sticky-buy img{width:40px;height:50px;object-fit:contain;background:#fff}
+.sb-info{display:grid;min-width:0}
+.sb-n{font-size:11px;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-p{font-size:12px;color:var(--dim)}
+.sticky-buy .btn{min-height:44px;padding:0 18px}
+@media (min-width:861px){.sticky-buy{display:none}}
+@media (prefers-reduced-motion:reduce){.hero__media,.hero__title .ch,.hero__cta,.mq-track,.low::before{animation:none}.qa,.sticky-buy{transition:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
