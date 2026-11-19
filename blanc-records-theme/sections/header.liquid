@@ -13,7 +13,7 @@
     {%- endif -%}
   </a>
   <div class="bar__right">
-    <a href="{{ routes.search_url }}" class="bar__link bar__search">{{ 'header.search' | t }}</a>
+    <a href="{{ routes.search_url }}" class="srch-btn" aria-label="{{ 'header.search' | t }}" data-search-open><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
     {%- if shop.customer_accounts_enabled -%}
       <a href="{{ routes.account_url }}" class="bar__link bar__account">{{ 'header.account' | t }}</a>
     {%- endif -%}
@@ -24,6 +24,16 @@
     </a>
   </div>
 </header>
+
+<div class="srch" hidden role="dialog" aria-modal="true" aria-label="{{ 'header.search' | t }}" data-search data-url="{{ routes.predictive_search_url }}" data-money-format="{{ shop.money_format | escape }}" data-empty="{{ 'search.no_results' | t | escape }}">
+  <form class="srch-in gut" action="{{ routes.search_url }}" method="get" role="search">
+    <label for="srch-q" class="visually-hidden">{{ 'header.search' | t }}</label>
+    <input id="srch-q" type="search" name="q" autocomplete="off" placeholder="{{ 'search.placeholder' | t }}" data-search-input>
+    <input type="hidden" name="type" value="product">
+    <button type="button" class="x" aria-label="{{ 'sheet.close' | t }}" data-search-close><span></span><span></span></button>
+  </form>
+  <div class="srch-res gut" aria-live="polite" data-search-results></div>
+</div>
 
 <div class="menu" id="menu" hidden data-menu>
   <div class="menu-top gut">

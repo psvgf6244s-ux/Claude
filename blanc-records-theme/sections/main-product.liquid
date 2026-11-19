@@ -1,9 +1,10 @@
 {%- assign current = product.selected_or_first_available_variant -%}
 <section class="pdp gut" data-product>
   <div class="pdp__stage">
-    <div class="pdp__slides" data-slides>
+    <div class="pdp__slides" data-slides data-zoom-open role="button" tabindex="0" aria-label="{{ 'products.zoom' | t }}">
+      <span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5L21 21M10.5 7.5v6M7.5 10.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       {%- for media in product.media -%}
-        <div class="pdp__slide{% if forloop.first %} is-active{% endif %}" data-slide="{{ forloop.index0 }}" data-media-id="{{ media.id }}">
+        <div class="pdp__slide{% if forloop.first %} is-active{% endif %}" data-slide="{{ forloop.index0 }}" data-media-id="{{ media.id }}"{% if media.media_type == 'image' %} data-zoom="{{ media | image_url: width: 2400 }}"{% endif %}>
           {%- case media.media_type -%}
             {%- when 'image' -%}
               {%- liquid
@@ -135,6 +136,11 @@
   <script type="application/json" data-strings>
     {"low": {{ 'products.low_stock' | t: size: '__S__' | json }}, "last": {{ 'products.last_one' | t: size: '__S__' | json }}, "choose": {{ 'products.choose_size' | t | json }}, "add": {{ 'products.add_to_cart' | t | json }}, "soldOut": {{ 'products.sold_out' | t | json }}, "unavailable": {{ 'products.unavailable' | t | json }}, "added": {{ 'products.added' | t | json }}, "error": {{ 'products.error' | t | json }}, "moneyFormat": {{ shop.money_format | json }}}
   </script>
+
+  <div class="zoom" hidden role="dialog" aria-modal="true" aria-label="{{ 'products.zoom' | t }}" data-zoom-overlay>
+    <button type="button" class="x zoom-x" aria-label="{{ 'sheet.close' | t }}" data-zoom-close><span></span><span></span></button>
+    <div class="zoom-sc" data-zoom-close><img alt="" width="1200" height="1600" data-zoom-img></div>
+  </div>
 
   <div class="sticky-buy" data-sticky-buy hidden>
     {%- if product.featured_media -%}{{ product.featured_media | image_url: width: 120 | image_tag: alt: '', width: 40, height: 50 }}{%- endif -%}

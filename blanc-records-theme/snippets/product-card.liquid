@@ -2,7 +2,7 @@
   Tarjeta de producto con «añadir rápido» por talla (en ordenador, al pasar el ratón).
   Uso: {% render 'product-card', product: product %}
 {%- endcomment -%}
-<div class="card">
+<div class="card" data-type="{{ product.type | handle }}">
   <div class="card__mw">
     <a class="card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
       {%- if product.featured_media -%}

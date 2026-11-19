@@ -20,11 +20,16 @@
     "marquee": {
       "type": "marquee",
       "settings": {}
+    },
+    "next_drop": {
+      "type": "next-drop",
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "marquee",
-    "arrivals"
+    "arrivals",
+    "next_drop"
   ]
 }

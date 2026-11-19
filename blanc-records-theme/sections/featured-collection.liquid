@@ -12,6 +12,22 @@
 <section class="arrivals gut" id="catalogo">
   <h2 class="h-up">{{ heading | escape }}</h2>
   <p class="sub">{{ subheading | escape }}</p>
+  {%- capture type_list -%}{%- for p in col.products limit: section.settings.limit -%}{{ p.type | handle }}::{{ p.type }}{% unless forloop.last %}||{% endunless %}{%- endfor -%}{%- endcapture -%}
+  {%- assign types = type_list | split: '||' | uniq -%}
+  {%- if types.size > 1 -%}
+    <div class="chips-f" role="group" aria-label="{{ 'filters.label' | t }}" data-filters>
+      <button type="button" data-f="all" aria-pressed="true">{{ 'filters.all' | t }}</button>
+      {%- for t_ in types -%}
+        {%- assign parts = t_ | split: '::' -%}
+        {%- if parts[0] != blank -%}
+          {%- capture key -%}filters.{{ parts[0] | replace: '-', '_' }}{%- endcapture -%}
+          {%- assign label = key | t -%}
+          {%- if label contains 'translation missing' -%}{%- assign label = parts[1] -%}{%- endif -%}
+          <button type="button" data-f="{{ parts[0] }}" aria-pressed="false">{{ label }}</button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
   <div class="grid" style="--cols: {{ section.settings.columns }};">
     {%- for product in col.products limit: section.settings.limit -%}
       {% render 'product-card', product: product %}

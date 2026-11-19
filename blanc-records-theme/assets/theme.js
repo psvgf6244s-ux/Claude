@@ -169,6 +169,105 @@
     });
   }
 
+  // Buscador con resultados mientras escribes
+  var srch = document.querySelector('[data-search]');
+  if (srch) {
+    var sIn = srch.querySelector('[data-search-input]'), sRes = srch.querySelector('[data-search-results]');
+    var sOpenBtn = document.querySelector('[data-search-open]'), sTimer, sLast = '';
+    var sMf = srch.getAttribute('data-money-format');
+    var sEsc = function (t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+    var sOpen = function (e) { if (e) e.preventDefault(); srch.hidden = false; document.body.style.overflow = 'hidden'; sIn.focus(); };
+    var sClose = function () { if (srch.hidden) return; srch.hidden = true; document.body.style.overflow = ''; if (sOpenBtn) sOpenBtn.focus(); };
+    var sRun = function () {
+      var q = sIn.value.trim(); if (q === sLast) return; sLast = q;
+      if (!q) { sRes.innerHTML = ''; return; }
+      fetch(srch.getAttribute('data-url') + '.json?q=' + encodeURIComponent(q) + '&resources[type]=product&resources[limit]=8')
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          var items = (j.resources && j.resources.results && j.resources.results.products) || [];
+          sRes.innerHTML = items.length ? items.map(function (p) {
+            var img = p.featured_image && p.featured_image.url ? p.featured_image.url + (p.featured_image.url.indexOf('?') > -1 ? '&' : '?') + 'width=400' : (p.image || '');
+            return '<a href="' + sEsc(p.url) + '">' + (img ? '<img src="' + sEsc(img) + '" alt="" loading="lazy">' : '') + '<span class="n">' + sEsc(p.title) + '</span><span class="pr">' + formatMoney(Math.round(parseFloat(p.price) * 100), sMf) + '</span></a>';
+          }).join('') : '<p class="srch-empty">' + sEsc(srch.getAttribute('data-empty').replace('{{ terms }}', q)) + '</p>';
+        }).catch(function () {});
+    };
+    if (sOpenBtn) sOpenBtn.addEventListener('click', sOpen);
+    srch.querySelector('[data-search-close]').addEventListener('click', sClose);
+    sIn.addEventListener('input', function () { clearTimeout(sTimer); sTimer = setTimeout(sRun, 180); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') sClose();
+      if (e.key === '/' && srch.hidden && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) sOpen(e);
+    });
+  }
+
+  // Filtros por tipo de prenda
+  document.querySelectorAll('[data-filters]').forEach(function (bar) {
+    var grid = bar.parentElement.querySelector('.grid');
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-f]'); if (!b) return;
+      bar.querySelectorAll('[data-f]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      grid.querySelectorAll('.card').forEach(function (c) { c.hidden = b.dataset.f !== 'all' && c.dataset.type !== b.dataset.f; });
+    });
+  });
+
+  // Encuentra tu talla
+  document.addEventListener('click', function (e) {
+    var go = e.target.closest('[data-ff-go]');
+    if (go) {
+      var box = go.closest('[data-ff]'), chest = JSON.parse(box.getAttribute('data-ff'));
+      var S = JSON.parse(document.querySelector('[data-ff-strings]').textContent);
+      var v = parseFloat(String(box.querySelector('[data-ff-in]').value).replace(',', '.'));
+      var out = box.querySelector('[data-ff-out]');
+      if (!(v >= 40 && v <= 80)) { out.textContent = S.bad; return; }
+      var sizes = Object.keys(chest), best = sizes[0];
+      sizes.forEach(function (z) { var d = Math.abs(chest[z] - v), db = Math.abs(chest[best] - v); if (d < db || (d === db && chest[z] > chest[best])) best = z; });
+      var first = sizes[0], last = sizes[sizes.length - 1], msg;
+      if (v < chest[first] - 2) { best = first; msg = S.small.replace('__C__', chest[first]); }
+      else if (v > chest[last] + 2) { best = last; msg = S.big.replace('__C__', chest[last]); }
+      else { var d = chest[best] - v; msg = S.result.replace('__Z__', best).replace('__C__', chest[best]).replace('__D__', d === 0 ? S.same : (d > 0 ? S.more : S.less).replace('__N__', Math.abs(d))); }
+      out.innerHTML = msg + '<br><button type="button" class="ff-pick" data-ff-pick="' + best + '">' + S.pick.replace('__Z__', best) + '</button>';
+      return;
+    }
+    var pk = e.target.closest('[data-ff-pick]');
+    if (pk) {
+      var r = Array.prototype.find.call(document.querySelectorAll('[data-option]'), function (i) { return i.value === pk.dataset.ffPick; });
+      if (r) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); r.closest('.sizes').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target.matches('[data-ff-in]')) { e.preventDefault(); e.target.closest('[data-ff]').querySelector('[data-ff-go]').click(); } });
+
+  // Zoom de la foto del producto
+  var zoom = document.querySelector('[data-zoom-overlay]');
+  var zoomOpen = document.querySelector('[data-zoom-open]');
+  if (zoom && zoomOpen) {
+    var zImg = zoom.querySelector('[data-zoom-img]'), zSc = zoom.querySelector('.zoom-sc');
+    var zShow = function () {
+      var s = zoomOpen.querySelector('.pdp__slide.is-active[data-zoom]'); if (!s) return;
+      zImg.src = s.getAttribute('data-zoom'); zoom.hidden = false; document.body.style.overflow = 'hidden';
+      zImg.onload = function () { zSc.scrollLeft = (zSc.scrollWidth - zSc.clientWidth) / 2; zSc.scrollTop = (zSc.scrollHeight - zSc.clientHeight) / 2; };
+      zoom.querySelector('.zoom-x').focus();
+    };
+    var zHide = function () { if (zoom.hidden) return; zoom.hidden = true; document.body.style.overflow = ''; zoomOpen.focus(); };
+    zoomOpen.addEventListener('click', function (e) { if (!e.target.closest('[data-dot]')) zShow(); });
+    zoomOpen.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); zShow(); } });
+    zoom.addEventListener('click', function (e) { if (e.target.closest('[data-zoom-close]')) zHide(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') zHide(); });
+  }
+
+  // Cabecera que se esconde al bajar y vuelve al subir
+  var hbar = document.querySelector('[data-bar]'), lastY = window.scrollY;
+  if (hbar) window.addEventListener('scroll', function () {
+    var y = window.scrollY, menuEl = document.querySelector('[data-menu]'), sh = document.querySelector('[data-sheet]');
+    hbar.classList.toggle('hide', y > lastY && y > 240 && (!menuEl || menuEl.hidden) && (!sh || sh.hidden));
+    lastY = y;
+  }, { passive: true });
+
+  // Aparición suave de las prendas (parten de un estado visible)
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var rv = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); rv.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.grid .card').forEach(function (c, i) { c.classList.add('rv'); c.style.transitionDelay = (i % 5) * 60 + 'ms'; rv.observe(c); });
+  }
+
   // Abrir la guía de tallas desde el enlace junto a las tallas
   document.addEventListener('click', function (e) {
     if (!e.target.closest('[data-open-guide]')) return;

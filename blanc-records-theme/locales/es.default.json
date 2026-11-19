@@ -70,7 +70,8 @@
     "secure_payment": "Pago seguro",
     "more_help": "¿Más dudas?",
     "see_faq": "Mira las preguntas frecuentes",
-    "related": "También te puede gustar"
+    "related": "También te puede gustar",
+    "zoom": "Ampliar foto"
   },
   "collections": {
     "view_all": "Ver todo",
@@ -118,7 +119,8 @@
     "count": {
       "one": "{{ count }} resultado para «{{ terms }}»",
       "other": "{{ count }} resultados para «{{ terms }}»"
-    }
+    },
+    "no_results": "No hay prendas con «{{ terms }}»."
   },
   "sheet": {
     "added": "Añadido",
@@ -159,10 +161,34 @@
     "length": "Largo",
     "shoulders": "Hombros",
     "sleeve": "Manga",
-    "note": "Medidas de la prenda en cm, con la prenda estirada en plano. Corte amplio: si dudas entre dos tallas, coge la tuya."
+    "note": "Medidas de la prenda en cm, con la prenda estirada en plano. Corte amplio: si dudas entre dos tallas, coge la tuya.",
+    "ff_title": "Encuentra tu talla",
+    "ff_desc": "Coge una prenda tuya parecida que te quede bien, estírala en plano y mide el pecho de axila a axila.",
+    "ff_label": "Ancho de pecho (cm)",
+    "ff_go": "Calcular",
+    "ff_bad": "Escribe un número entre 40 y 80.",
+    "ff_result": "Tu talla: <strong>__Z__</strong>. Su pecho mide __C__ cm (__D__).",
+    "ff_same": "igual que tu prenda",
+    "ff_more": "__N__ cm más que tu prenda",
+    "ff_less": "__N__ cm menos que tu prenda",
+    "ff_small": "Tu prenda es más estrecha que nuestra S (__C__ cm): la S te quedará más holgada.",
+    "ff_big": "Tu prenda es más ancha que nuestra XL (__C__ cm): la XL te quedará más ajustada.",
+    "ff_pick": "Elegir talla __Z__"
   },
   "announcement": {
     "messages": "Drop 01 ya disponible|Tirada única · Sin reposición|Envíos desde Pamplona|Devoluciones en 14 días",
     "label": "Avisos"
+  },
+  "filters": {
+    "label": "Filtrar por tipo",
+    "all": "Todo",
+    "camiseta": "Camisetas",
+    "camiseta_manga_larga": "Manga larga",
+    "sudadera": "Sudaderas"
+  },
+  "next_drop": {
+    "heading": "Fecha por anunciar",
+    "text": "Lo que se graba una vez no se repite. Apúntate y te avisamos antes que a nadie.",
+    "button": "Avisadme"
   }
 }

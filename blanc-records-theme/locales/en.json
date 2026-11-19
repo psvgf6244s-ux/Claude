@@ -70,7 +70,8 @@
     "secure_payment": "Secure payment",
     "more_help": "More questions?",
     "see_faq": "Read the FAQ",
-    "related": "You may also like"
+    "related": "You may also like",
+    "zoom": "Zoom photo"
   },
   "collections": {
     "view_all": "View all",
@@ -118,7 +119,8 @@
     "count": {
       "one": "{{ count }} result for “{{ terms }}”",
       "other": "{{ count }} results for “{{ terms }}”"
-    }
+    },
+    "no_results": "No items match “{{ terms }}”."
   },
   "sheet": {
     "added": "Added",
@@ -159,10 +161,34 @@
     "length": "Length",
     "shoulders": "Shoulders",
     "sleeve": "Sleeve",
-    "note": "Garment measurements in cm, laid flat. Relaxed fit: if you are between two sizes, take your usual one."
+    "note": "Garment measurements in cm, laid flat. Relaxed fit: if you are between two sizes, take your usual one.",
+    "ff_title": "Find your size",
+    "ff_desc": "Take a similar piece of yours that fits well, lay it flat and measure the chest from armpit to armpit.",
+    "ff_label": "Chest width (cm)",
+    "ff_go": "Calculate",
+    "ff_bad": "Enter a number between 40 and 80.",
+    "ff_result": "Your size: <strong>__Z__</strong>. Its chest measures __C__ cm (__D__).",
+    "ff_same": "same as your piece",
+    "ff_more": "__N__ cm more than your piece",
+    "ff_less": "__N__ cm less than your piece",
+    "ff_small": "Your piece is narrower than our S (__C__ cm): the S will feel roomier.",
+    "ff_big": "Your piece is wider than our XL (__C__ cm): the XL will feel more fitted.",
+    "ff_pick": "Choose size __Z__"
   },
   "announcement": {
     "messages": "Drop 01 out now|One run only · No restocks|Shipped from Pamplona|14-day returns",
     "label": "Announcements"
+  },
+  "filters": {
+    "label": "Filter by type",
+    "all": "All",
+    "camiseta": "Tees",
+    "camiseta_manga_larga": "Long sleeve",
+    "sudadera": "Hoodies"
+  },
+  "next_drop": {
+    "heading": "Date to be announced",
+    "text": "Recorded once, never repeated. Sign up and hear about it before anyone else.",
+    "button": "Notify me"
   }
 }
