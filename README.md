@@ -63,3 +63,9 @@ Antes de publicar, sustituye **todo lo que está entre corchetes** `[ ]`: nombre
 - Emitir factura de cada venta si te la piden y declarar el IVA trimestral.
 - Revisar estos textos con una gestoría o un abogado: son una base completa pero no sustituyen el asesoramiento profesional.
 - Si quieres usar ®, registrar la marca en la OEPM (oepm.es) o en la EUIPO.
+
+## 7. Inglés
+- El tema tiene `locales/en.json` con todos los textos.
+- En Shopify el inglés está activado y publicado en `/en/`, con traducciones de las 5 prendas, el menú y las páginas Contacto, Cookies y Hacer una devolución.
+- El **tipo** de producto no se traduce: la guía de tallas lo usa para elegir el dibujo.
+- Las políticas legales se publicarán en español (idioma del contrato) cuando estén los datos fiscales; la versión inglesa de la web lo indica.
