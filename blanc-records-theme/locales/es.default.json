@@ -115,5 +115,17 @@
     "taxes_shipping": "IVA incluido. Envío calculado al pagar.",
     "legal_html": "Al tramitar el pedido aceptas las <a href=\"{{ terms }}\">condiciones de venta</a> y la <a href=\"{{ privacy }}\">política de privacidad</a>.",
     "your_order": "Tu pedido"
+  },
+  "returns": {
+    "order": "Número de pedido",
+    "email": "Email de la compra",
+    "items": "Qué prendas devuelves (y talla)",
+    "reason": "Motivo",
+    "reason_withdraw": "No me convence (desistimiento)",
+    "reason_size": "Quiero otra talla",
+    "reason_defect": "Tiene un defecto",
+    "comments": "Comentarios (opcional)",
+    "send": "Solicitar devolución",
+    "success": "Solicitud recibida. En 24–48 h te escribimos con la dirección y los pasos para el envío."
   }
 }

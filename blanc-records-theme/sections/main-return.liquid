@@ -1,0 +1,32 @@
+<section class="page gut">
+  <h1 class="h-up">{{ page.title | escape }}</h1>
+  {%- if page.content != blank -%}<div class="rte page__body">{{ page.content }}</div>{%- endif -%}
+  {%- form 'contact', class: 'contact', id: 'return-form' -%}
+    <input type="hidden" name="contact[tipo]" value="Solicitud de devolución">
+    {%- if form.posted_successfully? -%}
+      <p class="note" role="status">{{ 'returns.success' | t }}</p>
+    {%- else -%}
+      {%- if form.errors -%}<p class="note" role="alert">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <label for="r-order">{{ 'returns.order' | t }}<input id="r-order" type="text" name="contact[pedido]" placeholder="#1001" required></label>
+      <label for="r-email">{{ 'returns.email' | t }}<input id="r-email" type="email" name="contact[email]" autocomplete="email" value="{{ form.email }}" required></label>
+      <label for="r-items">{{ 'returns.items' | t }}<input id="r-items" type="text" name="contact[prendas]" required></label>
+      <label for="r-why">{{ 'returns.reason' | t }}
+        <select id="r-why" name="contact[motivo]">
+          <option>{{ 'returns.reason_withdraw' | t }}</option>
+          <option>{{ 'returns.reason_size' | t }}</option>
+          <option>{{ 'returns.reason_defect' | t }}</option>
+        </select>
+      </label>
+      <label for="r-body">{{ 'returns.comments' | t }}<textarea id="r-body" name="contact[body]" rows="4"></textarea></label>
+      <label class="check" for="r-privacy">
+        <input id="r-privacy" type="checkbox" name="contact[acepta_privacidad]" value="si" required>
+        <span>{{ 'contact.privacy_html' | t: privacy: shop.privacy_policy.url }}</span>
+      </label>
+      <button type="submit" class="btn">{{ 'returns.send' | t }}</button>
+    {%- endif -%}
+  {%- endform -%}
+</section>
+
+{% schema %}
+{ "name": "Solicitud de devolución", "settings": [] }
+{% endschema %}
