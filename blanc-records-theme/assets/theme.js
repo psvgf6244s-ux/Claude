@@ -131,7 +131,7 @@
           '<div class="empty-c"><p>' + esc(S.empty) + '</p><a class="btn" href="' + routeRoot + 'collections/all">' + esc(S.see_all) + '</a></div>';
         var inCart = {};
         cart.items.forEach(function (it) { inCart[it.product_id] = true; });
-        var ups = list.filter(function (p) { return !inCart[p.id] && p.variants.some(function (v) { return v.available; }); }).slice(0, 6);
+        var ups = list.filter(function (p) { return !inCart[p.id] && p.variants.some(function (v) { return v.available; }); }).slice(0, 4);
         q('[data-sheet-ups-wrap]').hidden = !ups.length;
         q('[data-sheet-ups]').innerHTML = ups.map(function (p) {
           var src = p.images && p.images[0] ? p.images[0].src : '';

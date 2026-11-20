@@ -17,10 +17,6 @@
         "show_all": true
       }
     },
-    "marquee": {
-      "type": "marquee",
-      "settings": {}
-    },
     "next_drop": {
       "type": "next-drop",
       "settings": {}
@@ -28,7 +24,6 @@
   },
   "order": [
     "hero",
-    "marquee",
     "arrivals",
     "next_drop"
   ]
