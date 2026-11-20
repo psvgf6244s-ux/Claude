@@ -15,7 +15,7 @@
       <div class="sec"><p class="sec-t">{{ 'sheet.your_order' | t }}</p><div data-sheet-lines></div></div>
       <div class="undo" role="status" data-sheet-undo hidden><span></span><button type="button" data-sheet-undo-btn>{{ 'sheet.undo' | t }}</button></div>
       <div class="ups-wrap sec" data-sheet-ups-wrap hidden>
-        <p class="sec-t">{{ 'sheet.complete_look' | t }}</p>
+        <div class="ups-h"><p class="sec-t">{{ 'sheet.complete_look' | t }}</p><div class="ups-nav" data-ups-nav><button type="button" class="ups-arr" data-ups-step="-1" aria-label="{{ 'sheet.prev' | t }}"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="ups-arr" data-ups-step="1" aria-label="{{ 'sheet.next' | t }}"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
         <div class="ups-row" data-sheet-ups></div>
       </div>
     </div>

@@ -141,7 +141,9 @@
     "see_all": "Ver el Drop 01",
     "trust_pay": "Pago seguro",
     "trust_returns": "Devoluciones 14 días",
-    "trust_ship": "Envío desde Pamplona"
+    "trust_ship": "Envío desde Pamplona",
+    "prev": "Anterior",
+    "next": "Siguiente"
   },
   "returns": {
     "order": "Número de pedido",

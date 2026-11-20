@@ -141,7 +141,9 @@
     "see_all": "Shop Drop 01",
     "trust_pay": "Secure payment",
     "trust_returns": "14-day returns",
-    "trust_ship": "Shipped from Pamplona"
+    "trust_ship": "Shipped from Pamplona",
+    "prev": "Previous",
+    "next": "Next"
   },
   "returns": {
     "order": "Order number",

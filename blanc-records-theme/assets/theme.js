@@ -131,7 +131,7 @@
           '<div class="empty-c"><p>' + esc(S.empty) + '</p><a class="btn" href="' + routeRoot + 'collections/all">' + esc(S.see_all) + '</a></div>';
         var inCart = {};
         cart.items.forEach(function (it) { inCart[it.product_id] = true; });
-        var ups = list.filter(function (p) { return !inCart[p.id] && p.variants.some(function (v) { return v.available; }); }).slice(0, 4);
+        var ups = list.filter(function (p) { return !inCart[p.id] && p.variants.some(function (v) { return v.available; }); }).slice(0, 8);
         q('[data-sheet-ups-wrap]').hidden = !ups.length;
         q('[data-sheet-ups]').innerHTML = ups.map(function (p) {
           var src = p.images && p.images[0] ? p.images[0].src : '';
@@ -142,7 +142,15 @@
               return '<button type="button" data-variant="' + v.id + '"' + (v.available ? '' : ' disabled') + '>' + esc(v.option1) + '</button>';
             }).join('') + '</div></div>';
         }).join('');
+        var row = q('[data-sheet-ups]'); row.scrollLeft = 0; requestAnimationFrame(upsNav);
       });
+    };
+    var upsNav = function () {
+      var row = q('[data-sheet-ups]'), nav = q('[data-ups-nav]'); if (!row || !nav) return;
+      var max = row.scrollWidth - row.clientWidth - 2;
+      nav.hidden = max <= 0;
+      nav.querySelector('[data-ups-step="-1"]').disabled = row.scrollLeft <= 2;
+      nav.querySelector('[data-ups-step="1"]').disabled = row.scrollLeft >= max;
     };
     var open = function (cart, added) {
       render(cart);
@@ -150,7 +158,7 @@
         lastFocus = document.activeElement;
         sheetEl.hidden = false;
         document.body.style.overflow = 'hidden';
-        requestAnimationFrame(function () { requestAnimationFrame(function () { sheetEl.classList.add('open'); }); });
+        requestAnimationFrame(function () { requestAnimationFrame(function () { sheetEl.classList.add('open'); upsNav(); }); });
       }
       q('[data-sheet-note]').textContent = '';
       if (added) showAdded(cart, added); else q('[data-sheet-added]').hidden = true;
@@ -202,6 +210,13 @@
       }
       var co = e.target.closest('[data-sheet-checkout]');
       if (co && co.hasAttribute('aria-disabled')) e.preventDefault();
+    });
+    q('[data-sheet-ups]').addEventListener('scroll', upsNav, { passive: true });
+    window.addEventListener('resize', upsNav);
+    sheetEl.addEventListener('click', function (e) {
+      var st = e.target.closest('[data-ups-step]'); if (!st) return;
+      var row = q('[data-sheet-ups]'), card = row.querySelector('.up-card'); if (!card) return;
+      row.scrollBy({ left: +st.dataset.upsStep * (card.offsetWidth + 12), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
     sheetEl.addEventListener('change', function (e) {
       var sel = e.target.closest('[data-swap]'); if (!sel) return;
