@@ -1,0 +1,57 @@
+{%- comment -%}
+  Pop-up de bienvenida con descuento. Se configura en Ajustes del tema > Pop-up de descuento.
+  El email se guarda en Clientes con las etiquetas newsletter y popup-10 (acepta marketing).
+  El código solo aparece en la página después de apuntarse.
+{%- endcomment -%}
+{%- if settings.popup_enable and settings.popup_code != blank and request.page_type != 'password' and request.design_mode == false -%}
+{%- assign pct = settings.popup_percent -%}
+<div class="pop" id="pop" hidden data-popup data-delay="{{ settings.popup_delay }}" data-snooze="{{ settings.popup_snooze }}"
+  data-strings='{"copy":{{ 'popup.copy' | t | json | escape }},"copied":{{ 'popup.copied' | t | json | escape }},"bad":{{ 'popup.bad' | t | json | escape }}}'>
+  <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-big">
+    <button type="button" class="pop-x" data-pop-close aria-label="{{ 'popup.close' | t }}"><span></span><span></span></button>
+    <div class="pop-media" aria-hidden="true">
+      {%- if settings.popup_image -%}
+        {{ settings.popup_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: '', widths: '500, 750, 1000', sizes: '(max-width: 720px) 100vw, 450px' }}
+      {%- else -%}
+        <img src="{{ 'hero.jpg' | asset_url }}" alt="" loading="lazy" width="3344" height="1882">
+      {%- endif -%}
+      <div class="pop-mq"><div class="pop-mq-t">{%- for i in (1..8) -%}<span>{{ 'popup.marquee' | t: percent: pct }}</span>{%- endfor -%}</div></div>
+    </div>
+    <div class="pop-body">
+      {%- form 'customer', id: 'popup-form', class: 'pop-form-wrap' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="pop-step" data-pop-done>
+            <p class="pop-k">{{ 'popup.done_kicker' | t }}</p>
+            <p class="pop-h2" id="pop-big">{{ 'popup.done_heading' | t: percent: pct }}</p>
+            <div class="ticket">
+              <span class="tk-l">{{ 'popup.code_label' | t }}</span>
+              <span class="tk-code" data-pop-code>{{ settings.popup_code | escape }}</span>
+              <button type="button" class="tk-copy" data-pop-copy>{{ 'popup.copy' | t }}</button>
+            </div>
+            <p class="pop-p">{{ 'popup.done_text' | t }}</p>
+            <a class="pop-btn" href="{{ routes.collections_url }}/all" data-pop-shop><span>{{ 'popup.shop' | t }}</span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        {%- else -%}
+          <div class="pop-step" data-pop-ask>
+            <input type="hidden" name="contact[tags]" value="newsletter, popup-10">
+            <input type="hidden" name="contact[accepts_marketing]" value="true">
+            <p class="pop-k">{{ 'popup.kicker' | t }}</p>
+            <p class="pop-big" id="pop-big" aria-label="-{{ pct }}%"><span data-pop-num data-to="{{ pct }}">-{{ pct }}</span><span class="pct">%</span></p>
+            <p class="pop-h">{{ 'popup.heading' | t }}</p>
+            <p class="pop-p">{{ 'popup.text' | t }}</p>
+            <div class="pop-f">
+              <label for="pop-email" class="vh">{{ 'newsletter.email' | t }}</label>
+              <input id="pop-email" type="email" name="contact[email]" autocomplete="email" placeholder="{{ 'newsletter.email' | t }}" required{% if form.errors %} aria-invalid="true"{% endif %}>
+              <button type="submit" class="pop-btn"><span>{{ 'popup.button' | t: percent: pct }}</span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <p class="pop-err" role="alert" data-pop-err>{% if form.errors %}{{ 'popup.error' | t }}{% endif %}</p>
+            <p class="pop-legal">{{ 'popup.legal_html' | t: privacy: shop.privacy_policy.url }}</p>
+            <button type="button" class="pop-no" data-pop-close>{{ 'popup.no' | t }}</button>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+<button type="button" class="pop-tab" hidden data-pop-tab aria-label="{{ 'popup.tab' | t: percent: pct }}"><span>-{{ pct }}%</span></button>
+{%- endif -%}

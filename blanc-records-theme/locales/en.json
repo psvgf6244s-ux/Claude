@@ -216,5 +216,26 @@
     "heading": "Date to be announced",
     "text": "Recorded once, never repeated. Sign up and hear about it before anyone else.",
     "button": "Notify me"
+  },
+  "popup": {
+    "kicker": "Welcome to BLANC",
+    "heading": "On your first order",
+    "text": "Join the list: get your code now and hear about every drop first.",
+    "button": "Get my {{ percent }}%",
+    "legal_html": "By signing up you agree to receive emails from BLANC RECORDS. Unsubscribe in one click. One use per customer. More in our <a href=\"{{ privacy }}\">privacy policy</a>.",
+    "no": "No, thanks",
+    "close": "Close",
+    "done_kicker": "You are in",
+    "done_heading": "Your {{ percent }}% is ready",
+    "code_label": "Your code",
+    "copy": "Copy",
+    "copied": "Copied",
+    "done_text": "It is already applied to your cart. If not, enter it at checkout. Valid on your first order, once per customer.",
+    "shop": "Start shopping",
+    "marquee": "FIRST ORDER · -{{ percent }}% · DROP 01 · ONE RUN ONLY ·",
+    "tab": "Open {{ percent }}% discount",
+    "bad": "Enter a valid email.",
+    "error": "We could not sign you up. Check the email and try again.",
+    "applied": "Code {{ code }} applied"
   }
 }

@@ -10,32 +10,135 @@
   {
     "name": "Marca",
     "settings": [
-      { "type": "text", "id": "wordmark_text", "label": "Nombre del logotipo", "default": "Blanc Records" },
-      { "type": "checkbox", "id": "wordmark_registered", "label": "Mostrar ® tras el nombre (solo si la marca está registrada en la OEPM/EUIPO)", "default": false },
-      { "type": "image_picker", "id": "favicon", "label": "Favicon" }
+      {
+        "type": "text",
+        "id": "wordmark_text",
+        "label": "Nombre del logotipo",
+        "default": "Blanc Records"
+      },
+      {
+        "type": "checkbox",
+        "id": "wordmark_registered",
+        "label": "Mostrar ® tras el nombre (solo si la marca está registrada en la OEPM/EUIPO)",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
     ]
   },
   {
     "name": "Colores",
     "settings": [
-      { "type": "color", "id": "color_bg", "label": "Fondo", "default": "#ffffff" },
-      { "type": "color", "id": "color_fg", "label": "Texto", "default": "#0a0a0a" },
-      { "type": "color", "id": "color_dim", "label": "Texto secundario", "default": "#636363" },
-      { "type": "color", "id": "color_line", "label": "Líneas", "default": "#e3e3e3" }
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Fondo",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_fg",
+        "label": "Texto",
+        "default": "#0a0a0a"
+      },
+      {
+        "type": "color",
+        "id": "color_dim",
+        "label": "Texto secundario",
+        "default": "#636363"
+      },
+      {
+        "type": "color",
+        "id": "color_line",
+        "label": "Líneas",
+        "default": "#e3e3e3"
+      }
     ]
   },
   {
     "name": "Tipografía",
     "settings": [
-      { "type": "font_picker", "id": "type_heading", "label": "Títulos", "default": "inter_n7" },
-      { "type": "font_picker", "id": "type_body", "label": "Texto", "default": "inter_n4" }
+      {
+        "type": "font_picker",
+        "id": "type_heading",
+        "label": "Títulos",
+        "default": "inter_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body",
+        "label": "Texto",
+        "default": "inter_n4"
+      }
     ]
   },
   {
     "name": "Redes sociales",
     "settings": [
-      { "type": "url", "id": "social_instagram", "label": "Instagram" },
-      { "type": "url", "id": "social_tiktok", "label": "TikTok" }
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      }
+    ]
+  },
+  {
+    "name": "Pop-up de descuento",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "popup_enable",
+        "label": "Mostrar pop-up de bienvenida",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "popup_code",
+        "label": "Código de descuento (créalo antes en Descuentos)",
+        "default": "BLANC10"
+      },
+      {
+        "type": "range",
+        "id": "popup_percent",
+        "label": "Porcentaje que se muestra",
+        "min": 5,
+        "max": 50,
+        "step": 5,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "popup_delay",
+        "label": "Segundos hasta que aparece",
+        "min": 2,
+        "max": 30,
+        "step": 1,
+        "unit": "s",
+        "default": 6
+      },
+      {
+        "type": "range",
+        "id": "popup_snooze",
+        "label": "Días sin volver a mostrarlo si lo cierran",
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "default": 14
+      },
+      {
+        "type": "image_picker",
+        "id": "popup_image",
+        "label": "Foto (si no, la del inicio)"
+      }
     ]
   }
 ]

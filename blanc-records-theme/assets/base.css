@@ -498,3 +498,60 @@ button,input,textarea,select{font:inherit;color:inherit}
 @media (min-width:861px){.sticky-buy{display:none}}
 @media (prefers-reduced-motion:reduce){.hero__media,.hero__title .ch,.hero__cta,.mq-track,.low::before{animation:none}.qa,.sticky-buy{transition:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* pop-up 10 % */
+.pop{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(6,6,6,.0);backdrop-filter:blur(0);transition:background .4s,backdrop-filter .4s}
+.pop.on{background:rgba(6,6,6,.62);backdrop-filter:blur(6px)}
+.pop-card{position:relative;width:min(900px,100%);max-height:calc(100svh - 32px);display:grid;grid-template-columns:1fr 1.1fr;background:#0a0a0a;color:#fff;overflow:hidden;transform:translateY(24px) scale(.97);opacity:0;transition:transform .55s cubic-bezier(.2,.9,.2,1),opacity .4s}
+.pop.on .pop-card{transform:none;opacity:1}
+.pop-media{position:relative;min-height:480px;overflow:hidden}
+.pop-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;transform:scale(1.12);transition:transform 2.4s cubic-bezier(.2,.7,.2,1)}
+.pop.on .pop-media img{transform:scale(1)}
+.pop-mq{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#0a0a0a;overflow:hidden}
+.pop-mq-t{display:flex;width:max-content;animation:mq 14s linear infinite}
+.pop-mq-t span{padding:10px 14px;font-size:12px;font-weight:800;letter-spacing:.14em;white-space:nowrap}
+.pop-body{position:relative;padding:44px 40px 32px;display:grid;align-content:center;overflow-y:auto}
+.pop-step{display:grid;gap:12px}
+.pop-k{margin:0;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.pop-big{margin:-6px 0 -10px;font-size:clamp(96px,14vw,156px);font-weight:900;line-height:.86;letter-spacing:-.07em;display:flex;align-items:flex-start;font-variant-numeric:tabular-nums}
+.pop-big .pct{font-size:.42em;margin:.16em 0 0 .04em;letter-spacing:-.02em}
+.pop-big.glitch{animation:glitch .7s steps(2) 1}
+@keyframes glitch{0%{text-shadow:4px 0 #ff2d55,-4px 0 #00d4ff;transform:translateX(0)}20%{text-shadow:-5px 2px #ff2d55,5px -2px #00d4ff;transform:translateX(-3px) skewX(-6deg)}40%{text-shadow:3px -1px #ff2d55,-3px 1px #00d4ff;transform:translateX(2px)}60%{text-shadow:-2px 0 #ff2d55,2px 0 #00d4ff;transform:skewX(4deg)}80%{text-shadow:1px 0 #ff2d55,-1px 0 #00d4ff}100%{text-shadow:none;transform:none}}
+.pop-h{margin:0;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.pop-h2{margin:0;font-size:clamp(30px,4vw,44px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.95}
+.pop-p{margin:0;color:rgba(255,255,255,.72);font-size:14px;line-height:1.5;max-width:40ch}
+.pop-f{display:grid;gap:8px;margin-top:6px}
+.pop-f input{min-height:54px;padding:0 16px;background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;font:inherit;font-size:16px;border-radius:0}
+.pop-f input::placeholder{color:rgba(255,255,255,.45)}
+.pop-f input:focus{outline:none;border-color:#fff}
+.pop-f input[aria-invalid="true"]{border-color:#ff5a5a}
+.pop-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border:0;background:#fff;color:#0a0a0a;font:inherit;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;overflow:hidden}
+.pop-btn svg{width:16px;height:16px;transition:transform .25s}
+.pop-btn:hover svg{transform:translateX(4px)}
+.pop-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(0,0,0,.12) 50%,transparent 70%);transform:translateX(-100%);animation:shine 2.8s ease-in-out 1.2s infinite}
+@keyframes shine{60%,100%{transform:translateX(100%)}}
+.pop-err{margin:0;min-height:0;font-size:13px;color:#ff8a8a}
+.pop-err:empty{display:none}
+.pop-legal{margin:0;font-size:11px;color:rgba(255,255,255,.45);line-height:1.45}
+.pop-no{justify-self:start;background:none;border:0;padding:6px 0;color:rgba(255,255,255,.55);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
+.pop-no:hover{color:#fff}
+.pop-x{position:absolute;top:10px;right:10px;z-index:3;width:44px;height:44px;border:0;border-radius:50%;background:rgba(10,10,10,.5);color:#fff;cursor:pointer}
+.pop-x span{position:absolute;left:13px;right:13px;top:21px;height:1.6px;background:currentColor;transform:rotate(45deg)}
+.pop-x span+span{transform:rotate(-45deg)}
+.ticket{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;padding:18px 20px;border:2px dashed rgba(255,255,255,.55);background:rgba(255,255,255,.04);margin:6px 0}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:#0a0a0a;transform:translateY(-50%)}
+.ticket::before{left:-12px}.ticket::after{right:-12px}
+.tk-l{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.tk-code{font-size:clamp(30px,4.6vw,42px);font-weight:900;letter-spacing:.06em;font-family:ui-monospace,"JetBrains Mono",Menlo,monospace;user-select:all}
+.tk-copy{min-height:40px;padding:0 16px;background:#fff;color:#0a0a0a;border:0;font:inherit;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+.tk-copy.ok{background:#1d6b35;color:#fff}
+.pop-done .ticket{animation:stamp .6s cubic-bezier(.2,1.4,.3,1) both}
+@keyframes stamp{from{transform:scale(1.25) rotate(-4deg);opacity:0}}
+.pop-tab{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:40;width:64px;height:64px;border-radius:50%;border:0;background:#0a0a0a;color:#fff;font:inherit;font-weight:900;font-size:15px;letter-spacing:-.03em;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:tabIn .5s cubic-bezier(.2,1.4,.3,1) both}
+.pop-tab span{display:inline-block;animation:wob 4s ease-in-out 2s infinite}
+@keyframes tabIn{from{transform:scale(0)}}
+@keyframes wob{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-10deg)}96%{transform:rotate(8deg)}}
+@media (max-width:720px){.pop{align-items:end;padding:0}.pop-card{grid-template-columns:1fr;max-height:92svh;width:100%;transform:translateY(100%)}.pop.on .pop-card{transform:none}.pop-media{min-height:0;height:150px}.pop-body{padding:24px 20px max(24px,env(safe-area-inset-bottom,0px))}.pop-big{font-size:96px}}
+@media (prefers-reduced-motion:reduce){.pop,.pop-card,.pop-media img{transition:none}.pop-mq-t,.pop-btn::after,.pop-tab,.pop-tab span,.pop-done .ticket,.pop-big.glitch{animation:none}}
+.pop .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pop-legal a{color:inherit}

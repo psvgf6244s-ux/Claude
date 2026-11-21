@@ -216,5 +216,26 @@
     "heading": "Fecha por anunciar",
     "text": "Lo que se graba una vez no se repite. Apúntate y te avisamos antes que a nadie.",
     "button": "Avisadme"
+  },
+  "popup": {
+    "kicker": "Bienvenida a BLANC",
+    "heading": "En tu primer pedido",
+    "text": "Apúntate a la lista: te damos el código ahora y te avisamos antes de cada drop.",
+    "button": "Quiero mi {{ percent }}%",
+    "legal_html": "Al apuntarte aceptas recibir emails de BLANC RECORDS. Te das de baja con un clic. Válido una vez por cliente. Más en la <a href=\"{{ privacy }}\">política de privacidad</a>.",
+    "no": "No, gracias",
+    "close": "Cerrar",
+    "done_kicker": "Ya estás dentro",
+    "done_heading": "Tu {{ percent }}% está listo",
+    "code_label": "Tu código",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "done_text": "Ya está aplicado en tu carrito. Si no, escríbelo al pagar. Válido en tu primer pedido, una vez por cliente.",
+    "shop": "Ir a comprar",
+    "marquee": "PRIMER PEDIDO · -{{ percent }}% · DROP 01 · TIRADA ÚNICA ·",
+    "tab": "Abrir descuento del {{ percent }}%",
+    "bad": "Escribe un email válido.",
+    "error": "No hemos podido apuntarte. Revisa el email e inténtalo otra vez.",
+    "applied": "Código {{ code }} aplicado"
   }
 }
