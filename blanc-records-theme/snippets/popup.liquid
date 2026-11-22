@@ -12,7 +12,7 @@
     <div class="pop-media" aria-hidden="true">
       {%- if settings.popup_reel -%}
         <div class="pop-reel" data-pop-reel data-speed="{{ settings.popup_reel_speed }}">
-          {%- for i in (1..15) -%}
+          {%- for i in (1..5) -%}
             {%- capture f -%}pop-{% if i < 10 %}0{% endif %}{{ i }}.jpg{%- endcapture -%}
             <img {% if forloop.first %}src{% else %}data-src{% endif %}="{{ f | asset_url }}" alt="" width="480" height="853"{% if forloop.first %} class="on"{% endif %}>
           {%- endfor -%}
