@@ -585,3 +585,30 @@ button,input,textarea,select{font:inherit;color:inherit}
 .pop-reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:none!important;transition:none!important}
 .pop-reel img.on{opacity:1}
 .pop-reel::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+
+/* pop-up v2: lado derecho */
+@media (min-width:721px){.pop-card{grid-template-columns:1fr 1fr}.pop-body{padding:48px 44px 30px}}
+.pop-step{gap:0}
+.pop-k{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.pop-k::before{content:"";width:18px;height:1px;background:currentColor}
+.pop-big{margin:0;font-size:clamp(104px,13vw,148px);font-weight:900;letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:1.6px #fff;transition:color .5s ease}
+.pop-big.fill{color:#fff}
+.pop-big .pct{font-size:.38em;margin:.06em 0 0 .06em;-webkit-text-stroke:1.2px #fff}
+.pop-h{margin:14px 0 0;font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pop-p{margin:14px 0 0;font-size:15px;color:rgba(255,255,255,.7)}
+.pop-perks{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:8px;font-size:13px;color:rgba(255,255,255,.85)}
+.pop-perks li{display:flex;align-items:center;gap:10px}
+.pop-perks svg{width:14px;height:14px;flex:none;color:#fff;opacity:.9}
+.pop-f{margin-top:26px;gap:14px}
+.pop-f input{min-height:48px;padding:0 2px;border:0;border-bottom:1px solid rgba(255,255,255,.4);font-size:16px}
+.pop-f input:focus{border-bottom-color:#fff}
+.pop-f input[aria-invalid="true"]{border-bottom-color:#ff5a5a}
+.pop-btn{min-height:54px;font-size:13px;letter-spacing:.1em}
+.pop-btn::after{display:none}
+.pop-btn:hover{background:#e9e9e9}
+.pop-err{margin-top:8px}
+.pop-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)}
+.pop-legal{max-width:34ch;font-size:11px}
+.pop-no{flex:none;padding:0}
+@media (max-width:720px){.pop-body{padding:24px 20px max(22px,env(safe-area-inset-bottom,0px))}.pop-big{font-size:92px}.pop-k{margin-bottom:12px}.pop-perks{margin-top:14px}.pop-f{margin-top:18px}.pop-media{height:170px}}
+@media (prefers-reduced-motion:reduce){.pop-big{transition:none}}

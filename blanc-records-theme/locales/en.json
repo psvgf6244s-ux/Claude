@@ -227,11 +227,11 @@
     "see": "See the drop"
   },
   "popup": {
-    "kicker": "Welcome to BLANC",
+    "kicker": "BLANC list",
     "heading": "On your first order",
-    "text": "Join the list: get your code now and hear about every drop first.",
-    "button": "Get my {{ percent }}%",
-    "legal_html": "By signing up you agree to receive emails from BLANC RECORDS. Unsubscribe in one click. One use per customer. More in our <a href=\"{{ privacy }}\">privacy policy</a>.",
+    "text": "Join the list and get your code instantly.",
+    "button": "Unlock my {{ percent }}%",
+    "legal_html": "By signing up you agree to receive emails from BLANC RECORDS (<a href=\"{{ privacy }}\">privacy</a>). One use per customer.",
     "no": "No, thanks",
     "close": "Close",
     "done_kicker": "You are in",
@@ -245,6 +245,10 @@
     "tab": "Open {{ percent }}% discount",
     "bad": "Enter a valid email.",
     "error": "We could not sign you up. Check the email and try again.",
-    "applied": "Code {{ code }} applied"
+    "applied": "Code {{ code }} applied",
+    "perk_1": "Early access to every drop",
+    "perk_2": "No spam: only launches",
+    "perk_3": "Unsubscribe in one click",
+    "placeholder": "you@email.com"
   }
 }

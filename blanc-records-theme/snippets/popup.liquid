@@ -22,7 +22,6 @@
       {%- else -%}
         <img src="{{ 'hero.jpg' | asset_url }}" alt="" loading="lazy" width="3344" height="1882">
       {%- endif -%}
-      <div class="pop-mq"><div class="pop-mq-t">{%- for i in (1..8) -%}<span>{{ 'popup.marquee' | t: percent: pct }}</span>{%- endfor -%}</div></div>
     </div>
     <div class="pop-body">
       {%- form 'customer', id: 'popup-form', class: 'pop-form-wrap' -%}
@@ -43,17 +42,24 @@
             <input type="hidden" name="contact[tags]" value="newsletter, popup-10">
             <input type="hidden" name="contact[accepts_marketing]" value="true">
             <p class="pop-k">{{ 'popup.kicker' | t }}</p>
-            <p class="pop-big" id="pop-big" aria-label="-{{ pct }}%"><span data-pop-num data-to="{{ pct }}">-{{ pct }}</span><span class="pct">%</span></p>
+            <p class="pop-big" id="pop-big" aria-label="{{ pct }}%"><span data-pop-num data-to="{{ pct }}">{{ pct }}</span><span class="pct">%</span></p>
             <p class="pop-h">{{ 'popup.heading' | t }}</p>
             <p class="pop-p">{{ 'popup.text' | t }}</p>
+            <ul class="pop-perks">
+              <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ 'popup.perk_1' | t }}</span></li>
+              <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ 'popup.perk_2' | t }}</span></li>
+              <li><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ 'popup.perk_3' | t }}</span></li>
+            </ul>
             <div class="pop-f">
               <label for="pop-email" class="vh">{{ 'newsletter.email' | t }}</label>
-              <input id="pop-email" type="email" name="contact[email]" autocomplete="email" placeholder="{{ 'newsletter.email' | t }}" required{% if form.errors %} aria-invalid="true"{% endif %}>
+              <input id="pop-email" type="email" name="contact[email]" autocomplete="email" placeholder="{{ 'popup.placeholder' | t }}" required{% if form.errors %} aria-invalid="true"{% endif %}>
               <button type="submit" class="pop-btn"><span>{{ 'popup.button' | t: percent: pct }}</span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
             <p class="pop-err" role="alert" data-pop-err>{% if form.errors %}{{ 'popup.error' | t }}{% endif %}</p>
-            <p class="pop-legal">{{ 'popup.legal_html' | t: privacy: shop.privacy_policy.url }}</p>
-            <button type="button" class="pop-no" data-pop-close>{{ 'popup.no' | t }}</button>
+            <div class="pop-foot">
+              <p class="pop-legal">{{ 'popup.legal_html' | t: privacy: shop.privacy_policy.url }}</p>
+              <button type="button" class="pop-no" data-pop-close>{{ 'popup.no' | t }}</button>
+            </div>
           </div>
         {%- endif -%}
       {%- endform -%}

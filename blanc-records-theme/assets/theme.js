@@ -618,9 +618,10 @@
 
   function count() {
     const el = pop.querySelector('[data-pop-num]'), big = pop.querySelector('.pop-big');
-    if (!el || reduce) return;
-    const to = +el.dataset.to || 10; let n = 0; el.textContent = '-0';
-    const iv = setInterval(() => { n++; el.textContent = '-' + n; if (n >= to) { clearInterval(iv); big.classList.remove('glitch'); void big.offsetWidth; big.classList.add('glitch'); } }, Math.max(20, 550 / to));
+    if (!el) return;
+    if (reduce) { big.classList.add('fill'); return; }
+    const to = +el.dataset.to || 10; let n = 0; el.textContent = '0'; big.classList.remove('fill');
+    const iv = setInterval(() => { n++; el.textContent = n; if (n >= to) { clearInterval(iv); setTimeout(() => big.classList.add('fill'), 120); } }, Math.max(20, 550 / to));
   }
   // fotos del logo a cortes rápidos (solo mientras el pop-up está abierto)
   const reel = pop.querySelector('[data-pop-reel]');
