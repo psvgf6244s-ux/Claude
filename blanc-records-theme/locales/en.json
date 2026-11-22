@@ -143,7 +143,9 @@
     "trust_returns": "14-day returns",
     "trust_ship": "Shipped from Pamplona",
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "fs_left": "You are <strong>__X__</strong> away from free shipping",
+    "fs_done": "<strong>You get free shipping</strong>"
   },
   "returns": {
     "order": "Order number",
@@ -215,7 +217,14 @@
   "next_drop": {
     "heading": "Date to be announced",
     "text": "Recorded once, never repeated. Sign up and hear about it before anyone else.",
-    "button": "Notify me"
+    "button": "Notify me",
+    "out": "Drops on",
+    "days": "days",
+    "hours": "hours",
+    "min": "min",
+    "sec": "sec",
+    "live": "Out now",
+    "see": "See the drop"
   },
   "popup": {
     "kicker": "Welcome to BLANC",

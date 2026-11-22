@@ -555,3 +555,16 @@ button,input,textarea,select{font:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){.pop,.pop-card,.pop-media img{transition:none}.pop-mq-t,.pop-btn::after,.pop-tab,.pop-tab span,.pop-done .ticket,.pop-big.glitch{animation:none}}
 .pop .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .pop-legal a{color:inherit}
+
+/* barra de envío gratis */
+.fs{padding:12px 20px 14px;border-bottom:1px solid var(--line,#e3e3e3);flex:none}
+.fs p{margin:0 0 8px;font-size:13px}
+.fs-bar{height:4px;background:var(--line,#e3e3e3);overflow:hidden}
+.fs-bar i{display:block;height:100%;background:currentColor;transform-origin:left;transform:scaleX(0);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.fs.ok{color:#1d6b35}
+/* cuenta atrás próximo drop */
+.cd{display:flex;gap:10px;margin:8px 0 6px;font-variant-numeric:tabular-nums}
+.cd div{min-width:72px;padding:12px 8px;border:1px solid rgba(255,255,255,.25);display:grid;gap:2px}
+.cd b{font-size:clamp(30px,6vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1}
+.cd span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+@media (max-width:420px){.cd{gap:6px}.cd div{min-width:0;flex:1}}

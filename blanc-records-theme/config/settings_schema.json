@@ -140,5 +140,17 @@
         "label": "Foto (si no, la del inicio)"
       }
     ]
+  },
+  {
+    "name": "Carrito",
+    "settings": [
+      {
+        "type": "number",
+        "id": "free_ship_threshold",
+        "label": "Envío gratis a partir de (€). 0 = no mostrar la barra",
+        "default": 60,
+        "info": "Pon el mismo importe en Ajustes > Envío y entrega para que el envío gratis se aplique de verdad."
+      }
+    ]
   }
 ]

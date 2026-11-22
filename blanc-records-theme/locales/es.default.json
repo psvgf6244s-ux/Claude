@@ -143,7 +143,9 @@
     "trust_returns": "Devoluciones 14 días",
     "trust_ship": "Envío desde Pamplona",
     "prev": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "fs_left": "Te faltan <strong>__X__</strong> para el envío gratis",
+    "fs_done": "<strong>Tienes envío gratis</strong>"
   },
   "returns": {
     "order": "Número de pedido",
@@ -215,7 +217,14 @@
   "next_drop": {
     "heading": "Fecha por anunciar",
     "text": "Lo que se graba una vez no se repite. Apúntate y te avisamos antes que a nadie.",
-    "button": "Avisadme"
+    "button": "Avisadme",
+    "out": "Sale el",
+    "days": "días",
+    "hours": "horas",
+    "min": "min",
+    "sec": "seg",
+    "live": "Ya disponible",
+    "see": "Ver el drop"
   },
   "popup": {
     "kicker": "Bienvenida a BLANC",

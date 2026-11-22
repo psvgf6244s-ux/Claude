@@ -4,13 +4,15 @@
 {%- endcomment -%}
 <div class="sheet-bg" hidden data-sheet
   data-money-format="{{ shop.money_format | escape }}"
-  data-strings='{"title":{{ 'cart.title' | t | json | escape }},"empty":{{ 'cart.empty' | t | json | escape }},"size":{{ 'sheet.size' | t | json | escape }},"remove_one":{{ 'sheet.remove_one' | t | json | escape }},"add_one":{{ 'sheet.add_one' | t | json | escape }},"checkout":{{ 'cart.checkout' | t | json | escape }},"add_size":{{ 'sheet.add_size' | t | json | escape }},"error":{{ 'products.error' | t | json | escape }},"added":{{ 'sheet.added' | t | json | escape }},"remove":{{ 'sheet.remove' | t | json | escape }},"removed":{{ 'sheet.removed' | t: name: '__NAME__' | json | escape }},"see_all":{{ 'sheet.see_all' | t | json | escape }}}'>
+  data-free="{{ settings.free_ship_threshold | default: 0 | times: 100 }}"
+  data-strings='{"title":{{ 'cart.title' | t | json | escape }},"empty":{{ 'cart.empty' | t | json | escape }},"size":{{ 'sheet.size' | t | json | escape }},"remove_one":{{ 'sheet.remove_one' | t | json | escape }},"add_one":{{ 'sheet.add_one' | t | json | escape }},"checkout":{{ 'cart.checkout' | t | json | escape }},"add_size":{{ 'sheet.add_size' | t | json | escape }},"error":{{ 'products.error' | t | json | escape }},"added":{{ 'sheet.added' | t | json | escape }},"remove":{{ 'sheet.remove' | t | json | escape }},"removed":{{ 'sheet.removed' | t: name: '__NAME__' | json | escape }},"see_all":{{ 'sheet.see_all' | t | json | escape }},"fs_left":{{ 'sheet.fs_left' | t | json | escape }},"fs_done":{{ 'sheet.fs_done' | t | json | escape }}}'>
   <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <header class="sheet-h">
       <strong id="sheet-title" data-sheet-title>{{ 'cart.title' | t }}</strong>
       <button class="x" type="button" aria-label="{{ 'sheet.close' | t }}" data-sheet-close><span></span><span></span></button>
     </header>
     <p class="added" role="status" data-sheet-added hidden></p>
+    <div class="fs" data-fs hidden><p data-fs-t aria-live="polite"></p><div class="fs-bar" aria-hidden="true"><i data-fs-i></i></div></div>
     <div class="sheet-body">
       <div class="sec"><p class="sec-t">{{ 'sheet.your_order' | t }}</p><div data-sheet-lines></div></div>
       <div class="undo" role="status" data-sheet-undo hidden><span></span><button type="button" data-sheet-undo-btn>{{ 'sheet.undo' | t }}</button></div>

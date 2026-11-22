@@ -126,6 +126,17 @@
       co.textContent = cart.item_count ? S.checkout + ' · ' + formatMoney(cart.total_price, mf) : S.checkout;
       co.toggleAttribute('aria-disabled', !cart.item_count);
       q('[data-sheet-foot]').hidden = !cart.item_count;
+      var fsBase = +sheetEl.getAttribute('data-free') || 0, fs = q('[data-fs]');
+      if (fs) {
+        var rate = window.Shopify && Shopify.currency && +Shopify.currency.rate || 1, goal = Math.round(fsBase * rate);
+        fs.hidden = !goal || !cart.item_count;
+        if (goal && cart.item_count) {
+          var left = goal - cart.total_price;
+          q('[data-fs-t]').innerHTML = left > 0 ? S.fs_left.split('__X__').join(esc(formatMoney(left, mf))) : S.fs_done;
+          fs.classList.toggle('ok', left <= 0);
+          q('[data-fs-i]').style.transform = 'scaleX(' + Math.min(1, cart.total_price / goal) + ')';
+        }
+      }
       loadProducts().then(function (list) {
         q('[data-sheet-lines]').innerHTML = cart.items.length ? cart.items.map(function (it) { return lineHTML(it, list); }).join('') :
           '<div class="empty-c"><p>' + esc(S.empty) + '</p><a class="btn" href="' + routeRoot + 'collections/all">' + esc(S.see_all) + '</a></div>';
@@ -670,7 +681,41 @@
   }
   if (get('br-pop-sub') === '1') return;
   if (snoozed()) { if (tab) tab.hidden = false; return; }
-  setTimeout(() => open(), (+pop.dataset.delay || 6) * 1000);
-  addEventListener('scroll', function sc() { if (scrollY > document.body.scrollHeight * 0.35) { open(); removeEventListener('scroll', sc); } }, { passive: true });
-  document.addEventListener('mouseout', (e) => { if (!e.relatedTarget && e.clientY < 8) open(); });
+  // no molestar: nunca encima del carrito, el menú o la búsqueda
+  const busy = () => document.querySelector('[data-sheet]:not([hidden]), [data-menu]:not([hidden]), [data-search]:not([hidden])');
+  const tryOpen = () => { if (shown) return; if (busy()) { setTimeout(tryOpen, 2500); return; } open(); };
+  const page = pop.dataset.page, buying = page === 'product' || page === 'cart';
+  const mobile = matchMedia('(max-width: 720px), (pointer: coarse)').matches;
+  let views = 0; try { views = +sessionStorage.getItem('br-views') + 1; sessionStorage.setItem('br-views', views); } catch (e) {}
+  // ordenador: tras unos segundos o al ir a salir. Móvil: desde la segunda página o al bajar media página.
+  // En producto y carrito solo al ir a salir, para no cortar una compra.
+  if (!buying && (!mobile || views >= 2)) setTimeout(tryOpen, (+pop.dataset.delay || 6) * 1000);
+  if (!buying) addEventListener('scroll', function sc() { if (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) > (mobile ? 0.5 : 0.35)) { tryOpen(); removeEventListener('scroll', sc); } }, { passive: true });
+  if (!mobile) document.addEventListener('mouseout', (e) => { if (!e.relatedTarget && e.clientY < 8) tryOpen(); });
+})();
+
+/* Cuenta atrás del próximo drop (fecha en hora de España) */
+(function () {
+  document.querySelectorAll('[data-countdown]').forEach(function (el) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(el.getAttribute('data-countdown').trim());
+    if (!m) return;
+    var guess = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
+    var off = function (t) { // minutos de diferencia de Madrid con UTC en ese momento
+      try { var p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).formatToParts(new Date(t)), g = {};
+        p.forEach(function (x) { g[x.type] = +x.value; });
+        return (Date.UTC(g.year, g.month - 1, g.day, g.hour, g.minute) - t) / 6e4; } catch (e) { return 60; }
+    };
+    var target = guess - off(guess) * 6e4;
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var tick = function () {
+      var d = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      if (!d) { el.outerHTML = '<p class="next-k up">' + el.getAttribute('data-live') + '</p>'; return; }
+      el.querySelector('[data-cd=d]').textContent = pad(Math.floor(d / 86400));
+      el.querySelector('[data-cd=h]').textContent = pad(Math.floor(d % 86400 / 3600));
+      el.querySelector('[data-cd=m]').textContent = pad(Math.floor(d % 3600 / 60));
+      el.querySelector('[data-cd=s]').textContent = pad(d % 60);
+      setTimeout(tick, 1000);
+    };
+    el.hidden = false; tick();
+  });
 })();

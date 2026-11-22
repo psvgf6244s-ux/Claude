@@ -13,6 +13,14 @@
   <div class="next-in">
     <p class="up next-k">{{ kicker | escape }}</p>
     <h2 id="next-h-{{ section.id }}">{{ heading | escape }}</h2>
+    {%- if section.settings.date != blank -%}
+      <div class="cd" data-countdown="{{ section.settings.date | escape }}" data-live="{{ 'next_drop.live' | t | escape }}" hidden>
+        <div><b data-cd="d">00</b><span>{{ 'next_drop.days' | t }}</span></div>
+        <div><b data-cd="h">00</b><span>{{ 'next_drop.hours' | t }}</span></div>
+        <div><b data-cd="m">00</b><span>{{ 'next_drop.min' | t }}</span></div>
+        <div><b data-cd="s">00</b><span>{{ 'next_drop.sec' | t }}</span></div>
+      </div>
+    {%- endif -%}
     <p class="next-p">{{ text | escape }}</p>
     {%- form 'customer', class: 'next-f', id: 'next-drop-form' -%}
       <input type="hidden" name="contact[tags]" value="newsletter, proximo-drop">
@@ -34,7 +42,8 @@
   "settings": [
     { "type": "text", "id": "kicker", "label": "Texto pequeño", "default": "Drop 02" },
     { "type": "text", "id": "heading", "label": "Título (vacío = «Fecha por anunciar» traducido)" },
-    { "type": "text", "id": "text", "label": "Texto (vacío = texto traducido)" }
+    { "type": "text", "id": "text", "label": "Texto (vacío = texto traducido)" },
+    { "type": "text", "id": "date", "label": "Fecha y hora del drop (hora de España)", "info": "Formato AAAA-MM-DD HH:MM, por ejemplo 2027-01-15 20:00. Vacío = sin cuenta atrás.", "placeholder": "2027-01-15 20:00" }
   ],
   "presets": [{ "name": "Próximo drop" }]
 }
