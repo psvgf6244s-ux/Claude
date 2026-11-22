@@ -568,3 +568,14 @@ button,input,textarea,select{font:inherit;color:inherit}
 .cd b{font-size:clamp(30px,6vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1}
 .cd span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
 @media (max-width:420px){.cd{gap:6px}.cd div{min-width:0;flex:1}}
+
+/* portada con varias fotos */
+.hero__slide{opacity:0;transition:opacity 1.6s ease;animation:none}
+.hero.has-slides .hero__media{opacity:0;transition:opacity 1.6s ease}
+.hero.has-slides .hero__media.is-on{opacity:1;animation:kb 9s linear both}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.1)}}
+.hero__dots{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:28px;z-index:3;display:flex;gap:6px}
+.hero__dots i{width:22px;height:2px;background:rgba(255,255,255,.4);overflow:hidden;position:relative}
+.hero__dots i.on::after{content:"";position:absolute;inset:0;background:#fff;transform-origin:left;animation:dot var(--t,6s) linear both}
+@keyframes dot{from{transform:scaleX(0)}}
+@media (prefers-reduced-motion:reduce){.hero.has-slides .hero__media.is-on,.hero__dots i.on::after{animation:none}.hero.has-slides .hero__media{transition:none}}

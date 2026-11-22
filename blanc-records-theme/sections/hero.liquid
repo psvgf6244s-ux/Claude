@@ -12,7 +12,7 @@
     assign focal = section.settings.image.presentation.focal_point
   endif
 -%}
-<section class="hero{% if section.settings.overlay %} hero--overlay{% endif %}" style="--hero-h: {{ section.settings.height }}vh; --focal: {{ focal }};">
+<section class="hero{% if section.settings.overlay %} hero--overlay{% endif %}" data-hero data-interval="{{ section.settings.interval }}" style="--hero-h: {{ section.settings.height }}vh; --focal: {{ focal }};">
   {%- if section.settings.video != blank -%}
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero__media', image_size: '1920x' }}
   {%- elsif section.settings.image != blank -%}
@@ -24,6 +24,26 @@
       alt: section.settings.image.alt | default: shop.name }}
   {%- else -%}
     <img class="hero__media" src="{{ 'hero.jpg' | asset_url }}" alt="Modelo con ropa beige sujetando una bandera azul marino con el logo de BLANC RECORDS en un paisaje volcánico" fetchpriority="high" width="3344" height="1882">
+  {%- endif -%}
+  {%- if section.settings.video == blank -%}
+    {%- liquid
+      assign extra = 0
+      for n in (2..4)
+        assign key = 'image_' | append: n
+        if section.settings[key] != blank
+          assign extra = extra | plus: 1
+        endif
+      endfor
+    -%}
+    {%- for n in (2..4) -%}
+      {%- assign key = 'image_' | append: n -%}
+      {%- assign im = section.settings[key] -%}
+      {%- if im != blank -%}
+        {%- capture pos -%}object-position: {{ im.presentation.focal_point | default: '52% 50%' }}{%- endcapture -%}
+        {{ im | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', class: 'hero__media hero__slide', alt: '', style: pos }}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if extra > 0 -%}<div class="hero__dots" data-hero-dots aria-hidden="true">{%- for i in (0..extra) -%}<i></i>{%- endfor -%}</div>{%- endif -%}
   {%- endif -%}
   {%- if section.settings.show_title -%}
     <h1 class="hero__title" data-split>
@@ -43,9 +63,13 @@
   "name": "Portada (hero)",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Imagen de fondo (vacío = foto de la bandera incluida en el tema)" },
+    { "type": "image_picker", "id": "image_2", "label": "Foto 2 (pasan solas, una tras otra)" },
+    { "type": "image_picker", "id": "image_3", "label": "Foto 3" },
+    { "type": "image_picker", "id": "image_4", "label": "Foto 4" },
+    { "type": "range", "id": "interval", "label": "Segundos por foto", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 6 },
     { "type": "video", "id": "video", "label": "Vídeo de fondo (opcional, sustituye a la imagen)" },
     { "type": "checkbox", "id": "show_title", "label": "Mostrar el nombre en grande encima de la foto", "default": true },
-    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca)", "default": "BLANC RECORDS" },
+    { "type": "text", "id": "title", "label": "Título (vacío = nombre de la marca)", "info": "Vacío = el nombre con ® si está activado en Ajustes del tema > Marca" },
     { "type": "checkbox", "id": "overlay", "label": "Oscurecer un poco la parte de abajo (mejora la lectura del botón)", "default": true },
     { "type": "text", "id": "kicker", "label": "Texto pequeño (vacío = texto traducido «Drop 01 ya disponible»)" },
     { "type": "text", "id": "button_label", "label": "Texto del botón (vacío = «Comprar» traducido)" },

@@ -4,9 +4,13 @@
       "type": "hero",
       "settings": {
         "show_title": true,
-        "title": "BLANC RECORDS",
         "overlay": true,
-        "height": 100
+        "height": 100,
+        "image": "shopify://shop_images/blanc-portada-3-contrapicado.png",
+        "image_2": "shopify://shop_images/blanc-portada-1-mejorada.png",
+        "image_3": "shopify://shop_images/blanc-portada-2-atardecer.png",
+        "image_4": "shopify://shop_images/blanc-portada-4-blanco-negro.png",
+        "interval": 6
       }
     },
     "arrivals": {

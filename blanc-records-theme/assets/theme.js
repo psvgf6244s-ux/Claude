@@ -720,3 +720,27 @@
     el.hidden = false; tick();
   });
 })();
+
+/* Portada: pasa las fotos solas */
+(function () {
+  var hero = document.querySelector('[data-hero]');
+  if (!hero) return;
+  var slides = hero.querySelectorAll('img.hero__media');
+  if (slides.length < 2) return;
+  var dots = hero.querySelectorAll('[data-hero-dots] i');
+  var ms = (+hero.getAttribute('data-interval') || 6) * 1000, i = 0, timer;
+  hero.classList.add('has-slides');
+  hero.style.setProperty('--t', ms / 1000 + 's');
+  var show = function (n) {
+    slides[i].classList.remove('is-on'); if (dots[i]) dots[i].classList.remove('on');
+    i = n; var im = slides[i]; im.loading = 'eager';
+    im.classList.remove('is-on'); void im.offsetWidth; im.classList.add('is-on');
+    if (dots[i]) { dots[i].classList.remove('on'); void dots[i].offsetWidth; dots[i].classList.add('on'); }
+  };
+  show(0);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var run = function () { clearInterval(timer); timer = setInterval(function () { show((i + 1) % slides.length); }, ms); };
+  slides[1].loading = 'eager';
+  run();
+  document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(timer); else run(); });
+})();
