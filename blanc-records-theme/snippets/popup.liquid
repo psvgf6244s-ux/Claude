@@ -5,7 +5,7 @@
 {%- endcomment -%}
 {%- if settings.popup_enable and settings.popup_code != blank and request.page_type != 'password' and request.design_mode == false -%}
 {%- assign pct = settings.popup_percent -%}
-<div class="pop" id="pop" hidden data-popup data-page="{{ request.page_type }}" data-delay="{{ settings.popup_delay }}" data-snooze="{{ settings.popup_snooze }}"
+<div class="pop" id="pop" hidden data-popup data-page="{{ request.page_type }}" data-delay="{{ settings.popup_delay }}"
   data-strings='{"copy":{{ 'popup.copy' | t | json | escape }},"copied":{{ 'popup.copied' | t | json | escape }},"bad":{{ 'popup.bad' | t | json | escape }}}'>
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-big">
     <button type="button" class="pop-x" data-pop-close aria-label="{{ 'popup.close' | t }}"><span></span><span></span></button>
@@ -66,5 +66,8 @@
     </div>
   </div>
 </div>
-<button type="button" class="pop-tab" hidden data-pop-tab aria-label="{{ 'popup.tab' | t: percent: pct }}"><span>-{{ pct }}%</span></button>
+<div class="pop-bar" hidden data-pop-tab>
+  <button type="button" class="pop-bar-open" data-pop-bar-open><strong>{{ pct }}%</strong><span>{{ 'popup.bar' | t }}</span><span class="pop-bar-cta">{{ 'popup.bar_cta' | t }}</span></button>
+  <button type="button" class="pop-bar-x" data-pop-bar-x aria-label="{{ 'popup.close' | t }}"><span></span><span></span></button>
+</div>
 {%- endif -%}

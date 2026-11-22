@@ -613,7 +613,7 @@
   const posted = /customer_posted=true/.test(location.search) || location.hash === '#popup-form';
   const fromPopup = (() => { try { return sessionStorage.getItem('br-pop-pending') === '1'; } catch (e) { return false; } })();
   const hasErr = !!pop.querySelector('[data-pop-err]') && pop.querySelector('[data-pop-err]').textContent.trim() !== '';
-  const snoozed = () => Date.now() - (+get('br-pop-closed') || 0) < (+pop.dataset.snooze || 14) * 864e5;
+  const snoozed = () => get('br-pop-seen') === '1'; // se abre solo una vez por persona
   let shown = false, lastFocus = null;
 
   function count() {
@@ -640,8 +640,8 @@
   function reelStop() { clearInterval(reelT); reelT = null; }
   function open(force) {
     if (!force && (shown || get('br-pop-sub') === '1' || snoozed())) return;
-    shown = true; lastFocus = document.activeElement;
-    pop.hidden = false; if (tab) tab.hidden = true; document.body.style.overflow = 'hidden';
+    shown = true; lastFocus = document.activeElement; set('br-pop-seen', '1');
+    pop.hidden = false; if (tab) { tab.hidden = true; document.body.classList.remove('bar-on'); } document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add('on')));
     if (done) pop.classList.add('pop-done'); else count();
     reelStart();
@@ -650,8 +650,7 @@
   function close(snooze) {
     pop.classList.remove('on'); document.body.style.overflow = ''; reelStop();
     setTimeout(() => { pop.hidden = true; }, reduce ? 0 : 400);
-    if (snooze && !done) set('br-pop-closed', Date.now());
-    if (!done && tab) tab.hidden = false;
+    showBar();
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
   pop.querySelectorAll('[data-pop-close]').forEach((b) => b.addEventListener('click', () => close(true)));
@@ -666,7 +665,14 @@
       else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
     }
   });
-  if (tab) tab.addEventListener('click', () => open(true));
+  // barra de abajo para recuperar el 10 % si lo cerraron
+  const barOff = () => { try { return sessionStorage.getItem('br-bar-off') === '1'; } catch (e) { return false; } };
+  const onBuyPage = pop.dataset.page === 'product' || pop.dataset.page === 'cart';
+  function showBar() { if (tab && !done && get('br-pop-sub') !== '1' && !barOff() && !onBuyPage) { tab.hidden = false; document.body.classList.add('bar-on'); } }
+  if (tab) {
+    tab.querySelector('[data-pop-bar-open]').addEventListener('click', () => open(true));
+    tab.querySelector('[data-pop-bar-x]').addEventListener('click', () => { tab.hidden = true; document.body.classList.remove('bar-on'); try { sessionStorage.setItem('br-bar-off', '1'); } catch (e) {} });
+  }
 
   if (form && !done) form.addEventListener('submit', (e) => {
     const i = form.querySelector('#pop-email');
@@ -698,18 +704,11 @@
     return;
   }
   if (get('br-pop-sub') === '1') return;
-  if (snoozed()) { if (tab) tab.hidden = false; return; }
-  // no molestar: nunca encima del carrito, el menú o la búsqueda
+  if (snoozed()) { showBar(); return; }
+  // se abre solo, una única vez, a los segundos indicados (nunca encima del carrito, el menú o la búsqueda)
   const busy = () => document.querySelector('[data-sheet]:not([hidden]), [data-menu]:not([hidden]), [data-search]:not([hidden])');
-  const tryOpen = () => { if (shown) return; if (busy()) { setTimeout(tryOpen, 2500); return; } open(); };
-  const page = pop.dataset.page, buying = page === 'product' || page === 'cart';
-  const mobile = matchMedia('(max-width: 720px), (pointer: coarse)').matches;
-  let views = 0; try { views = +sessionStorage.getItem('br-views') + 1; sessionStorage.setItem('br-views', views); } catch (e) {}
-  // ordenador: tras unos segundos o al ir a salir. Móvil: desde la segunda página o al bajar media página.
-  // En producto y carrito solo al ir a salir, para no cortar una compra.
-  if (!buying && (!mobile || views >= 2)) setTimeout(tryOpen, (+pop.dataset.delay || 6) * 1000);
-  if (!buying) addEventListener('scroll', function sc() { if (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) > (mobile ? 0.5 : 0.35)) { tryOpen(); removeEventListener('scroll', sc); } }, { passive: true });
-  if (!mobile) document.addEventListener('mouseout', (e) => { if (!e.relatedTarget && e.clientY < 8) tryOpen(); });
+  const tryOpen = () => { if (shown || snoozed()) return; if (busy()) { setTimeout(tryOpen, 2500); return; } open(); };
+  setTimeout(tryOpen, (+pop.dataset.delay || 8) * 1000);
 })();
 
 /* Cuenta atrás del próximo drop (fecha en hora de España) */

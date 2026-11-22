@@ -612,3 +612,17 @@ button,input,textarea,select{font:inherit;color:inherit}
 .pop-no{flex:none;padding:0}
 @media (max-width:720px){.pop-body{padding:24px 20px max(22px,env(safe-area-inset-bottom,0px))}.pop-big{font-size:92px}.pop-k{margin-bottom:12px}.pop-perks{margin-top:14px}.pop-f{margin-top:18px}.pop-media{height:170px}}
 @media (prefers-reduced-motion:reduce){.pop-big{transition:none}}
+
+/* barra de abajo para recuperar el 10 % */
+.pop-bar{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:40;transform:translateX(-50%);display:flex;align-items:center;background:#0a0a0a;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.22);animation:barIn .5s cubic-bezier(.2,.9,.2,1) both;max-width:calc(100vw - 28px)}
+.pop-bar[hidden]{display:none}
+.pop-bar-open{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 6px 0 18px;background:none;border:0;color:inherit;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.pop-bar-open strong{font-size:16px;font-weight:900;letter-spacing:-.03em}
+.pop-bar-cta{padding:6px 10px;background:#fff;color:#0a0a0a;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.pop-bar-x{position:relative;width:44px;height:48px;background:none;border:0;color:rgba(255,255,255,.7);cursor:pointer}
+.pop-bar-x span{position:absolute;left:15px;right:15px;top:23px;height:1.5px;background:currentColor;transform:rotate(45deg)}
+.pop-bar-x span+span{transform:rotate(-45deg)}
+.pop-bar-x:hover{color:#fff}
+@keyframes barIn{from{transform:translate(-50%,140%)}}
+@media (prefers-reduced-motion:reduce){.pop-bar{animation:none}}
+@media (max-width:720px){body.bar-on .hero .cta,body.bar-on .hero__cta{bottom:86px;transition:bottom .4s}}

@@ -249,6 +249,8 @@
     "perk_1": "Early access to every drop",
     "perk_2": "No spam: only launches",
     "perk_3": "Unsubscribe in one click",
-    "placeholder": "you@email.com"
+    "placeholder": "you@email.com",
+    "bar": "off your first order",
+    "bar_cta": "Get it"
   }
 }

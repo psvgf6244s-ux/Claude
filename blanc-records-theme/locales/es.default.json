@@ -249,6 +249,8 @@
     "perk_1": "Acceso antes que nadie a cada drop",
     "perk_2": "Sin spam: solo lanzamientos",
     "perk_3": "Te das de baja con un clic",
-    "placeholder": "tu@email.com"
+    "placeholder": "tu@email.com",
+    "bar": "en tu primer pedido",
+    "bar_cta": "Conseguirlo"
   }
 }
