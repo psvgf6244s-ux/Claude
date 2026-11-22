@@ -622,16 +622,32 @@
     const to = +el.dataset.to || 10; let n = 0; el.textContent = '-0';
     const iv = setInterval(() => { n++; el.textContent = '-' + n; if (n >= to) { clearInterval(iv); big.classList.remove('glitch'); void big.offsetWidth; big.classList.add('glitch'); } }, Math.max(20, 550 / to));
   }
+  // fotos del logo a cortes rápidos (solo mientras el pop-up está abierto)
+  const reel = pop.querySelector('[data-pop-reel]');
+  let reelT = null;
+  function reelStart() {
+    if (!reel || reelT || reduce) return;
+    const imgs = [...reel.querySelectorAll('img')];
+    imgs.forEach((im) => { if (im.dataset.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); } });
+    let k = 0;
+    reelT = setInterval(() => {
+      let n = (k + 1) % imgs.length, tries = 0;
+      while (!(imgs[n].complete && imgs[n].naturalWidth) && tries++ < imgs.length) n = (n + 1) % imgs.length;
+      imgs[k].classList.remove('on'); imgs[n].classList.add('on'); k = n;
+    }, +reel.dataset.speed || 250);
+  }
+  function reelStop() { clearInterval(reelT); reelT = null; }
   function open(force) {
     if (!force && (shown || get('br-pop-sub') === '1' || snoozed())) return;
     shown = true; lastFocus = document.activeElement;
     pop.hidden = false; if (tab) tab.hidden = true; document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add('on')));
     if (done) pop.classList.add('pop-done'); else count();
+    reelStart();
     setTimeout(() => { const f = pop.querySelector(done ? '[data-pop-copy]' : '#pop-email'); if (f) f.focus({ preventScroll: true }); }, 350);
   }
   function close(snooze) {
-    pop.classList.remove('on'); document.body.style.overflow = '';
+    pop.classList.remove('on'); document.body.style.overflow = ''; reelStop();
     setTimeout(() => { pop.hidden = true; }, reduce ? 0 : 400);
     if (snooze && !done) set('br-pop-closed', Date.now());
     if (!done && tab) tab.hidden = false;

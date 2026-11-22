@@ -579,3 +579,9 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero__dots i.on::after{content:"";position:absolute;inset:0;background:#fff;transform-origin:left;animation:dot var(--t,6s) linear both}
 @keyframes dot{from{transform:scaleX(0)}}
 @media (prefers-reduced-motion:reduce){.hero.has-slides .hero__media.is-on,.hero__dots i.on::after{animation:none}.hero.has-slides .hero__media{transition:none}}
+
+/* pop-up: fotos del logo a cortes rápidos */
+.pop-reel{position:absolute;inset:0;background:#0a0a0a}
+.pop-reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:none!important;transition:none!important}
+.pop-reel img.on{opacity:1}
+.pop-reel::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}

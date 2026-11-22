@@ -138,6 +138,22 @@
         "type": "image_picker",
         "id": "popup_image",
         "label": "Foto (si no, la del inicio)"
+      },
+      {
+        "type": "checkbox",
+        "id": "popup_reel",
+        "label": "Fotos del logo cambiando rápido (efecto vídeo)",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "popup_reel_speed",
+        "label": "Velocidad del cambio de fotos",
+        "min": 150,
+        "max": 800,
+        "step": 50,
+        "unit": "ms",
+        "default": 250
       }
     ]
   },

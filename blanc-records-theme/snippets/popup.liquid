@@ -10,7 +10,14 @@
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-big">
     <button type="button" class="pop-x" data-pop-close aria-label="{{ 'popup.close' | t }}"><span></span><span></span></button>
     <div class="pop-media" aria-hidden="true">
-      {%- if settings.popup_image -%}
+      {%- if settings.popup_reel -%}
+        <div class="pop-reel" data-pop-reel data-speed="{{ settings.popup_reel_speed }}">
+          {%- for i in (1..15) -%}
+            {%- capture f -%}pop-{% if i < 10 %}0{% endif %}{{ i }}.jpg{%- endcapture -%}
+            <img {% if forloop.first %}src{% else %}data-src{% endif %}="{{ f | asset_url }}" alt="" width="480" height="853"{% if forloop.first %} class="on"{% endif %}>
+          {%- endfor -%}
+        </div>
+      {%- elsif settings.popup_image -%}
         {{ settings.popup_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: '', widths: '500, 750, 1000', sizes: '(max-width: 720px) 100vw, 450px' }}
       {%- else -%}
         <img src="{{ 'hero.jpg' | asset_url }}" alt="" loading="lazy" width="3344" height="1882">
