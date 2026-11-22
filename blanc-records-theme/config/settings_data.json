@@ -1,7 +1,7 @@
 {
   "current": {
     "wordmark_text": "Blanc Records",
-    "wordmark_registered": false,
+    "wordmark_registered": true,
     "color_bg": "#ffffff",
     "color_fg": "#0a0a0a",
     "color_dim": "#636363",

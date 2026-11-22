@@ -420,6 +420,7 @@
     var i = 0;
     h.innerHTML = Array.prototype.map.call(txt, function (c) {
       if (c === ' ') return '<span class="sp" aria-hidden="true"> </span>';
+      if (c === '®') return '<span class="ch reg" aria-hidden="true" style="--i:' + (i++) + '">®</span>';
       return '<span class="ch" aria-hidden="true" style="--i:' + (i++) + '">' + c.replace(/[&<>"]/g, function (x) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[x]; }) + '</span>';
     }).join('');
   });

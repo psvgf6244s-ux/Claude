@@ -27,7 +27,7 @@
         {%- endif -%}
         <button type="button" class="f-cookies" data-cookie-prefs>{{ 'footer.cookies' | t }}</button>
       </nav>
-      <a class="f-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, {{ 'header.home' | t }}">{% render 'logo-mark' %}<span>{{ settings.wordmark_text | default: shop.name | upcase | escape }}</span></a>
+      <a class="f-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, {{ 'header.home' | t }}">{% render 'logo-mark' %}<span>{{ settings.wordmark_text | default: shop.name | upcase | escape }}{% if settings.wordmark_registered %}<sup class="reg">®</sup>{% endif %}</span></a>
     </div>
 
     <div class="f-col f-news">
