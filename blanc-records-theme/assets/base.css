@@ -626,3 +626,8 @@ button,input,textarea,select{font:inherit;color:inherit}
 @keyframes barIn{from{transform:translate(-50%,140%)}}
 @media (prefers-reduced-motion:reduce){.pop-bar{animation:none}}
 @media (max-width:720px){body.bar-on .hero .cta,body.bar-on .hero__cta{bottom:86px;transition:bottom .4s}}
+
+/* barra del 10 %: fija al final del pie, no flotante */
+.pop-bar{position:static;left:auto;bottom:auto;transform:none;max-width:none;width:100%;justify-content:center;gap:4px;padding:6px 16px calc(6px + env(safe-area-inset-bottom,0px));background:#0a0a0a;border-top:1px solid rgba(255,255,255,.12);box-shadow:none;animation:none}
+.pop-bar-open{padding:0 4px;flex-wrap:wrap;white-space:normal;justify-content:center}
+@media (max-width:720px){body.bar-on .hero .cta,body.bar-on .hero__cta{bottom:28px}}
