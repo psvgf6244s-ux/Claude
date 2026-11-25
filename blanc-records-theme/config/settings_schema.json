@@ -155,8 +155,15 @@
         "type": "number",
         "id": "free_ship_threshold",
         "label": "Envío gratis a partir de (€). 0 = no mostrar la barra",
-        "default": 60,
-        "info": "Pon el mismo importe en Ajustes > Envío y entrega para que el envío gratis se aplique de verdad."
+        "default": 55,
+        "info": "Debe coincidir con la tarifa de Ajustes > Envío y entrega (ahora: gratis desde 55 € en España)."
+      },
+      {
+        "type": "text",
+        "id": "free_ship_country",
+        "label": "País con envío gratis (código de 2 letras)",
+        "default": "ES",
+        "info": "La barra solo se muestra a quien compra desde este país."
       }
     ]
   }

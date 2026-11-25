@@ -4,7 +4,7 @@
 {%- endcomment -%}
 <div class="sheet-bg" hidden data-sheet
   data-money-format="{{ shop.money_format | escape }}"
-  data-free="{{ settings.free_ship_threshold | default: 0 | times: 100 }}"
+  data-free="{% if localization.country.iso_code == settings.free_ship_country %}{{ settings.free_ship_threshold | default: 0 | times: 100 }}{% else %}0{% endif %}"
   data-strings='{"title":{{ 'cart.title' | t | json | escape }},"empty":{{ 'cart.empty' | t | json | escape }},"size":{{ 'sheet.size' | t | json | escape }},"remove_one":{{ 'sheet.remove_one' | t | json | escape }},"add_one":{{ 'sheet.add_one' | t | json | escape }},"checkout":{{ 'cart.checkout' | t | json | escape }},"add_size":{{ 'sheet.add_size' | t | json | escape }},"error":{{ 'products.error' | t | json | escape }},"added":{{ 'sheet.added' | t | json | escape }},"remove":{{ 'sheet.remove' | t | json | escape }},"removed":{{ 'sheet.removed' | t: name: '__NAME__' | json | escape }},"see_all":{{ 'sheet.see_all' | t | json | escape }},"fs_left":{{ 'sheet.fs_left' | t | json | escape }},"fs_done":{{ 'sheet.fs_done' | t | json | escape }}}'>
   <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <header class="sheet-h">

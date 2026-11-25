@@ -10,7 +10,9 @@
     "type_body": "inter_n4",
     "social_instagram": "https://www.instagram.com/blancrecords.co",
     "social_tiktok": "https://www.tiktok.com/@blancrecords.co",
-    "popup_image": "shopify://shop_images/blanc-portada-4-blanco-negro.png"
+    "popup_image": "shopify://shop_images/blanc-portada-4-blanco-negro.png",
+    "free_ship_threshold": 55,
+    "free_ship_country": "ES"
   },
   "presets": {
     "Default": {
