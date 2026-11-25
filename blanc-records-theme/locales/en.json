@@ -41,7 +41,8 @@
     "payment": "Payment methods",
     "news_heading": "Subscribe and hear about the next drop first",
     "faq": "Preguntas frecuentes",
-    "about": "Sobre BLANC"
+    "about": "Sobre BLANC",
+    "follow": "Follow us"
   },
   "products": {
     "from": "From",
@@ -72,7 +73,13 @@
     "see_faq": "Read the FAQ",
     "related": "You may also like",
     "zoom": "Zoom photo",
-    "zoom_hint": "Pasa el ratón o toca para ampliar"
+    "zoom_hint": "Pasa el ratón o toca para ampliar",
+    "bis_title": "Size sold out? We will let you know if it comes back.",
+    "bis_button": "Notify me",
+    "bis_ok": "Done. If your size comes back, you will be the first to know.",
+    "bis_legal_html": "We only email you about this size. <a href=\"{{ privacy }}\">Privacy</a>.",
+    "recent": "Recently viewed",
+    "sold_out_size": "Sold out in size __S__"
   },
   "collections": {
     "view_all": "View all",

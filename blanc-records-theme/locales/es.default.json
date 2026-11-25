@@ -41,7 +41,8 @@
     "payment": "Métodos de pago",
     "news_heading": "Suscríbete y entérate antes del próximo drop",
     "faq": "Preguntas frecuentes",
-    "about": "Sobre BLANC"
+    "about": "Sobre BLANC",
+    "follow": "Síguenos"
   },
   "products": {
     "from": "Desde",
@@ -72,7 +73,13 @@
     "see_faq": "Mira las preguntas frecuentes",
     "related": "También te puede gustar",
     "zoom": "Ampliar foto",
-    "zoom_hint": "Pasa el ratón o toca para ampliar"
+    "zoom_hint": "Pasa el ratón o toca para ampliar",
+    "bis_title": "¿Agotada tu talla? Te avisamos si vuelve.",
+    "bis_button": "Avísame",
+    "bis_ok": "Hecho. Si vuelve tu talla, te escribimos antes que a nadie.",
+    "bis_legal_html": "Solo te escribimos para avisarte de esta talla. <a href=\"{{ privacy }}\">Privacidad</a>.",
+    "recent": "Vistos recientemente",
+    "sold_out_size": "Agotada en talla __S__"
   },
   "collections": {
     "view_all": "Ver todo",
